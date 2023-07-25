@@ -1,0 +1,2914 @@
+⚪⚪⚪ Linguagem Javascript ⚪⚪⚪
+
+⚪ História: ⚪
+Tudo é uma evolução/transformação, nada  foi criado no zero. Com o surgimento do HTML e do HTTP, especialistas começaram a interagir e evoluir  a ferramenta até que foi criada a Netscape, uma empresa importantíssima que financiou a criação do Live Script, uma linguagem scriptada que focava em dar "dinâmica" à pagina estática. Em função da  popularidade da liguagem de programação Java, foi trocado o nome de Live Script para JavaScript (ambas são baseadas em "C", mas completamente diferentes). Para evitar copias e criar um padrão no mercado, a Netscape realizou uma parceria com a Ecma International e criou o EcmaScript, que é JavaScript usado amplamente pelas pessoas. A versão mais atual do Javascript é a ES12 (EcmaScript 2021).
+
+O Javascript, no contexto histórico, foi criado para melhorar os html e na atualidade ainda é usado para tal, regulando o comportamento dos sites e fazendo uso do Unicode charset. JavaScript também pode ser usado fora dos web browsers, atuando em no backend de server-side aplications. Normalmente usando React.js. Ou seja, tanto no front end quanto no back end, JavaScript é útil e versátil quando o assunto é regular o que acontece quando enventos são acionados, além de ter alta compatibilidade com API's (a ferramenta fundamental do Dev do século 21)
+Existem ainda JavaScript Frameworks, eles são ambientes de devesenvolvimento que ajudam os developers a renderizar e criar coisas (eles facilitam a implementação de coisas ao fornecer uma "estrutura" própria).
+
+No passado e ainda hoje utiliza-se Jquery. Jquery é uma library de JavaScript que foi feita para simplificar e otimizar a manipulação HTML DOM, além de ser capaz de fazer animações em CSS e receber e enviar informações de/para bancos de dados através do Ajax.
+OBS: DOM = Document Object Mode. Ele permite que você trabalhe diretamente com os elementos do html (div, h3, span, etc) sem precisar "converter" ou ter trabalho a mais em JavaScript.
+
+Atualmente exitem ferramentas/frameworks que são muito melhores que Jquery (como Angular, React, Vue.JS), todos eles facilitando a modificação e implementação de código em websites. As principais features de um framework são: Rendering; Data handling, Event handling.
+Como essas fetures um código que teria 40 linhas em java script normal (também chamado de "plain") pode ser  escrito com 15 linhas ou menos em um framework. Clro, para saber usar um framework você deve saber usar JavaScript.
+Essa é a lei da vida, primeiro você sofre com uma ferramenta antiquada para poder saber usar uma uma ferramenta complexa. Aliás, enquanto python usa a "Snake case" (abacate_bonito), JavaScript usa a "Pascal case" (abacateBonito ou AbacateBonito)
+
+⚪ Aprendizado: ⚪
+O trabalhoso não é entender a sintaxe, é desenvolver o pensamento criativo de como resolver um problema real com essa sintaxe.
+Você deve desenvolver a capidade de transformar um texto/pedido em instruções, como se fossem uma recita. Depois basta "seguir" essa recita na linguagem de programação e faze com que cada passo se conecte com o anterior.
+
+➽ "use strict"
+É uma string que você sempre deve escrever na liha 1 do seu arquivo .js. Basicamente é responsável por "ativar" funcionalidades modernas do javaScript.
+
+➽ Erros mais prováveis de acontecer:
+	• syntax errors: você escreveu errado e/ou usou uma palavra reservada e/ou não seguiu a "ortografia" da linguagem.
+	• Logical errors: você emplementou o código em uma logica fundamentalmente errada. O compilador/interpretador vai funcionar mas não do jeito que deveria. 
+
+➽ Operators:
+Existem diversos tipos, a maioria sendo bem parecida com usados em python:
+!= (diferente)
+** (pontenciação)
+% (resto da divisão)
+>= (maior ou igual)
+<= (menor ou igual)
+== (igual lógico)
+=== (estritamente igual. Também lógico)
+"x += 5" é o mesmo que "x = x + 5"
+"x /= 5" é o mesmo que "x = x / 5"
+entre outros
+Você pode concatenar strings com strings ou strings com números ao usar o "+".  
+Ex:
+##
+let x = 5 + 5; // output de x: 10
+let y = "5" + " " + 5; // output de y: 5 5
+let z = "Hello" + 5; // output de z: Hello5
+##
+
+⚪ Variables: ⚪
+
+Existem 3 formas de declarar uma variável (criar uma "caixa" vazia):
+	- var: Modo antigo. É confuso mas tem suas vantagens (ex: hoisting e multiplas declarações para uma mesma variável).
+	    ex: var count = 1;
+		var count = 2; //É perimitido fazer a reatribuição usando o "var". 
+
+	- let: Modo "novo". Faz o mesmo que o var mas não tem hoisting nem é permitido fazer multiplas declarações para uma mesma variável.
+		ex: let count = 1;
+		    count = 2; // É permitido fazer assim desde que Não use o "let" novamente.
+		
+	- const: Cria a variável do mesmo jeito, mas o value/valor atrelado à ela não poderá variar. É recomendado usar quando os dados são "estáticos" (tipo um botão).
+		ex: const count = 1;
+		    count = 2; // não é permitido fazer pois "count" é constante em 1.
+
+Como regra geral, SEMPRE  declare variáveis como const A menos que você Saiba que ela VAI mudar.
+
+Veja o exemplo e perceba a importância das variables:
+	###
+	<button id="button_A">Press me</button>
+	<h3 id="heading_A"></h3>
+	<script>
+	const buttonA = document.querySelector('#button_A');
+	const headingA = document.querySelector('#heading_A');
+
+	buttonA.onclick = function() {
+	  let name = +prompt('What is your name?');
+	  alert('Hello ' + name + ', nice to see you!');
+	  headingA.textContent = 'Welcome ' + name;
+	}
+	</script>
+	###
+Se a variável "name" não fosse criada, não seria possível colocar o Conteúdo/Value do prompt no heading. 
+A nossa básica é: Variables são "containers" para values. Variables (e objects) Não são seu values, são "espaços" onde eles estão armazenados.
+
+
+➽ Scopes de declaração de variáveis:
+Em JS existem três scopes:
+-> Global Scope (a variável pode ser usada/tem o mesmo valor em todo o código)
+-> Function Scope (a variável só é usada/tem valor distinto em funções)
+-> Block Scope (variáveis criadas dentro de "{ chaves }" (block) não podem ser acessadas fora dessa block. Cada bloco é único e não precisa de indentificação.
+
+➽ Basicamente, todos os tipos primitivos(literals) podem ser criados/formados como objetos. Literals são uma forma de declarar variáveis, pense como a  maneira mais rápida e leve, Porém com poucas funcionalidades. No JS podemos transformar eles temporáriamente em objetos para poder usar metodos e funções com eles. 
+Basicamente, você não quer/não é recomendado fazer: let x = String("abacate"); Basta fazer let x ="abacate". Em ambos os casos eu posso usar methods e etc (só que no 2 eu faço uma transformação temporária).
+
+
+⚪ Data Types ⚪
+		➽ Number: Esse DataType é igual ao "float" do python, com 64 bits de comprimento. 
+		Os valores em notação científica também são do datatype "number" (Ex: const number3 = 3e5 // 3 * 10^5).
+			
+		➽ String: Em JS as aspas normais ('') e as duplas ("") são tratadas como iguais sendo usadas para declarar strings. 
+		As aspas "reversas" (``) são usadas para fazer template strings (template Literals). Ex: let x = `Posso usar o valor dessa ${variavel}`;
+
+		➽ Boolean: Só exitem dois valores possíveis, true ou false. Normalmente usa-se/escreve-se alguma expressão com operadores logicos.
+
+		➽ Symbol: É um valor único que você obtem através de uma string. Você não pode ver o valor/conteúdo de uma symbol, é como se fosse um uid. 
+		Dois symbols de uma mesma string não são iguais. O objetivo dos symbols é tratar dados de maneira mais discreta (privacidade) mas não são "fortes" o suficiente para tal, sendo
+		necessário usar proxies e outras tecnologias em um app profissional.
+
+		➽ Objects: Objects armazenam os dados em key/value pairs. As keys tem que ser strings e os values podem ser qualquer outros data type 
+		(até mesmo outros objects ou alguma função (chamada de method)). São criados ao usar chaves ({}). Ex:
+			##
+			let object = {
+				key: "value",
+				key2: 5
+			};
+			##
+
+		➽ Undefined: É a variable global que representa a não existênicia de dados. Quando você faz "let x;"  Você está dizendo que x existe, mas não está dando um valor para ele. 
+		Até que um valor seja atribuido à x ele será reconhecido como "undefined".
+		A keyword "void" pode ser usada para ignorar o output associado a uma expressão  e então retornar "undefined". A sintaxe é "void <expression>". 
+		Ex:
+			## veremos mais sobre functions adiante
+			function f() {
+			    document.body.style.backgroundColor = 'red'
+			    document.body.style.color = 'white'
+			} //a função é totalmente funcional
+			let vari = (undefined === void f()); //Como "void f()" é undefined então vari = true
+			alert(vari);
+			##
+
+		➽ Null: Normalmente é usada para indicar falta de "indentidade", ou então quando uma variável vai ter um valor no futuro, mas não tem agora. Por exemplo "let x = null;"
+
+
+⚪ Hoisting ⚪
+Hoisting se refere ao processo, realizado pelo interpreter, de mover as Declarações de funções, variáveis e classes para o topo de seus respectivos escopos, antes de serem executados.
+
+➽ Em funções:
+##
+	//O "correto" seria escrever a função primeiro e depois "chamar" ela, mas:
+
+	catName("Tiger");
+
+	function catName(name) {
+	  console.log("My cat's name is " + name);
+	}
+	//O código acima roda, mesmo que a função seja chamada antes de ter sido declarada. Output: "My cat's name is Tiger"
+##
+
+➽ Em variáveis:
+Basciamente só quando você declara variáveis com o "var" que o hoisting é possível, porém diferente do modo que acontece com as funções.
+##
+	console.log(num); /* Vai retornar 'undefined' (e não 6), porque o hoisting feito pelo var é de "declaração", ou seja, ele só declara a variável "num" 
+	( e como não atribui um valor a ela, ela fica como undefined)
+	var num = 6; // Initialization and declaration.
+	console.log(num); // vai retornar/printar 6 pois é executada depois da linha de declaração e Atribuição.
+##
+
+
+⚪ Condicionais:⚪
+
+No JS clássico existem 2 modos de fazer condicioais
+	1. If..Else
+		if (condição) {code}
+		else if (outra condição) {code}
+		else{code}
+		Exemplo:
+			##
+			if (choice === 'sunny' && temperature < 86) { //após o if, entre paranteses está a condição. Se ela for verdadeira o bloco de código é executado
+			//OBS: && = AND e || = OR
+			  //some code
+			} else if (choice === 'sunny' && temperature >= 86) { //else if, você já sabe como funciona
+			  //other code
+			} else {
+			  break;
+			}
+			
+			##
+	
+	2.Switch..Case
+		Exemplo:
+			##
+			let variavel = 50
+			switch(typeof(variavel)){
+			  case "number":
+			  	alert("1");
+			  	break;
+			  case "string":
+			  	alert("2");
+			  	break;
+	      		  default:
+			  	//default code
+			  	break;
+			}
+			##
+
+⚪ Loops/Laços ⚪
+No JS clássico existem 5 loops/laços:
+	
+	1. For
+		##
+		for(let i = 0; i < 5; i++){
+		  console.log("ABACATE")
+		}
+		##
+	2. While
+		##
+		let i = 0
+		while (i < 5){
+		  console.log("ABACATE")
+		  i++
+		}
+		##
+	3. Do..While
+		##
+		let i = 0
+		do{
+		  console.log("ABACATE")
+		  i++
+		  } while (i<5)
+		##
+	4. For..In (iteração dentro de uma coleção/objeto)
+		##
+		const a = {
+		  type: "a",
+		  id: 5031
+		};
+		for(let key in a){
+		  console.log(a.id);
+		  //vai dar o resultado duas vezes porque tem 2 keys
+		}
+	 	##
+	5. For..of (iteração dentro de arrays)
+		##
+		const cores = ["abacate", "2"]
+		for (let cor of cores){
+		  console.log(cor);
+		};
+		##
+
+
+⚪ Algumas observações ⚪ 
+	- O operador ternário é uma forma de fazer código condicional de maneira rápida.
+	  Ele é usado da seguinte forma:
+		###
+		let a = 100
+		let b = a === "string" ? "yes" : "no"
+		// se a é uma string, então b = "yes" otherwise b = "no" 
+		###
+		
+	- && (duas condições verdadeiras), || (uma condição verdadeira), ! (negativo/inverso) são operadores lógicos recorrentes.
+	- Existem diversos operadores, entre eles: "++" e "--"
+		##
+		let idade = 18;
+		console.log(--idade) //output: 17
+		console.log(idade--) //output: 18
+		##
+		
+	- Sempre use "===" e "!==" ao invés de "==" e "!=".
+	
+	- "num2 + num1 / 8 + 2;" é diferente de "(num2 + num1) / (8 + 2);", tenha cuidado de fazer uma equação, e coloque, sempre que possível, os parênteses. 
+	- Não confunda "=" (atribuição) com "===" (verificação lógica)
+	- Em uma string, se você cria ela com aspas duplas (") dentro dela, só é permitido usar aspas simples (') e vice-versa.
+	- Para adicionar caracteres especiais em uma string, você tem que usar o \ antes dele. Ex: "Abacate\!"	
+	- Concatenação de strings pode ser feita de duas maneiras:
+		1.Usando o "+":
+			###
+			const greeting = "Hello";
+			const name = "Chris";
+			console.log(greeting + ", " + name); //O ", " serve para dar um espaço entre as variáveis
+			###
+			
+		2. Usando template literals: 
+		   Você usa aspas inversas, no lugar das normais (`) e você pode se referir ao valor de uma variável ao usar ${variable} além poder manter a formatação.
+			###
+			const song = 'Fight the Youth';
+			const score = 9;
+			const highestScore = 10;
+			const output = `I like the song ${song}. I gave it a score of ${score/highestScore * 100}%.`;
+				//não dá erro, mas o correto seria usar "\%" alí no final.
+			console.log(output);		
+			//Dentro dos backsticks (`), você pode usar ${variable} para referir-se ao value dela ou fazer operações.	
+			###		
+
+	- Methods que você pode usar em strings (lembre, elas são objetos):
+		.includes(): Verifica se uma palavra/frase/sub-string está dentro de outra string. Também pode ser usado em arrays para saber se um elemento existe.
+				##
+				const vari = 'mozilla';
+				if (vari.includes('zilla')) {
+				  console.log('Found zilla!');
+				} else {
+				  console.log('No zilla here!');
+				}
+				##
+		
+		.replace(): Dada uma string, vai trocar o primeiro argumento pelo segundo. Todos os argumentos devem ser strings
+				##
+				const browserType = 'mozilla';
+				const updated = browserType.replace('moz','van');
+				console.log(updated);      // "vanilla"
+				console.log(browserType);  // "mozilla"
+				##
+		.slice(): Você pode cortar/selecionar somente uma parte da string. "str.slice(start [, end])"
+				##
+				let str = "stringify";
+				alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
+				alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+				##
+			
+			
+	- Methods que você pode usar em números (Math.):
+	     +---------------------------------------------------------------------+
+	     |  (num)	Math.floor	Math.ceil	Math.round	Math.trunc |
+	     |   3.1	    3		   4		    3		    3      |
+	     |   3.6	    3	           4		    4  		    3      |
+	     |  -1.1	   -2		  -1		   -1		   -1  	   |
+	     |  -1.6	   -2		  -1		   -2		   -1	   |
+	     +---------------------------------------------------------------------+
+
+
+	- Além de usar o DOM, inputs e forms, você pode obter dados do usuário através do comando prompt.
+		## 
+		let resp1 = prompt("Qual a sua resposta?")
+		if (resp1 === Abacate){
+		  alert("GORGEOUS")
+		}
+		##		
+	
+		
+⚪ Functions ⚪
+São blocos de código indentados (dentro de chaves {}) e que só são executadas quando são invocadas (algum outro comando ou evento a executa) ou quanto se auto-invocam (executam "automaticamente"). 
+
+A sintaxe é:
+##
+function nomeDaFunction(param1, ..., paramx){
+  // code to be executed. Repare que esse bloco (esta entre chaves {}) esta indentado
+}
+##
+
+Para um bom código siga o design pattern: "Uma função não faz tudo, só faz uma ou poucas coisas". Ou seja uma função não calcula e cria o texto, uma calcula e outra separadamente cria o texto. Isso torna as funções mais "utilzaveis" e reciclaveis.
+
+➽ A keyword "return" funciona da seguinte maneira: quando o compilador/leitor do JavaScript chega na linha em que o "return" está, a função para e "retorna" o valor ao "caller" (quem chamou a função).
+##
+function convertToFahrenheit(celsius)
+{
+	return ((9/5) * celsius) + 32
+	let variable = "abacate" === "coxinha" //A função vai ignorar essa linha pois ela esta depois do "return" e no mesmo bloco (de codigo), ou seja, vai ser pulada/ignorada.
+}
+alert(convertToFahrenheit(5))
+alert(variable) //como "variable" não foi atrubida, nada acontece.
+##
+
+➽ Arrow functions é uma notação mais consisa que visa compactar a declaração de funções. Estrutura: let func1 = (arg1, arg2, ..., argN) =>{ expression };
+Não precisa fazer return, também não precisa usar a keyword function. Se não existir parâmetros basta fazer (). A parte que está entre chaves pode ser indentada normalmente.
+Além disso arrow functions não tem um "this." próprio. Se um for usado ele recebe/analisa o "contexto" em que está(dentro de um obj por exemplo) e se ele não consiguir entender o contexto, simplismente dá erro, pois a função não sabe o que "this.abacate" significa, por exemplo.
+		## Exemplo:
+		const array = [
+		  {id: 1, name: "a"},
+		  {id: 2, name: "b"}
+		]
+		console.log(
+		array.find((array) =>{
+		  return array.name === "a";
+		}));
+		//lambda arrow function: "(args) => {code}"
+		##
+
+
+➽ Rest parameters:
+O rest paramenters "..." também pode ser chamado de spread operator dependendo do contexto.
+É rest paramenter: quando você usa como argumento. Basicamente é utilizado para passar argumentos "infinitos" para uma função. Estrutura: "function funcao(arg1, arg2, ...outrasArgs){}"
+	Observações: 1. Repare que o "...outrasArgs" é/deve ser o último parâmetro.
+		     2. todos os valores que são colocados "a mais" (depois dos argumentos normais) são adicionados a uma ARRAY.
+	##Ex:
+	function sumAll(...args) { // args is the name for the array
+	  let sum = 0;
+	  for (let arg of args){
+	  sum += arg;
+	  }
+	  return sum;
+	}
+	alert( sumAll(1) ); // 1
+	alert( sumAll(1, 2) ); // 3
+	alert( sumAll(1, 2, 3) ); // 6
+	##
+
+É spread operator quando você usar ele na atribuição de coisas. Basicamente serve para copiar/concatenar/manipular objects e arrays.
+	##Ex:
+	//ARRAY
+	let arr = [3, 5, 1];
+	let arr2 = [8, 9, 15];
+	let merged = [0, ...arr, 2, ...arr2];
+	alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+	
+	//OBJECTS
+	let arr = [1, 2, 3];
+	let arrCopy = [...arr];
+	arr.push(4);
+	alert(arr); // 1, 2, 3, 4
+	alert(arrCopy); // 1, 2, 3
+	##
+
+➽ Callbacks:
+Callback é um termo utilizado normalmente quando se trabalha com async/await, mas, basicamente, consiste em chamar um função dentro de outra função, criando uma relação de dependencia/sequencia lógica de eventos.
+##Ex:
+function preProducao(arg1, iniciar_producao){
+	if(arg1 === "iniciar"){
+		iniciar_producao()
+	}
+}
+
+function initProducao(){
+	alert("doing something");
+}
+
+preProducao("iniciar", initProducao)
+
+//repare que a função que inicia a produção só começa/ocorre quando a função "preProducao" da a liberdade/ordem de iniciar.
+##
+
+➽ Recursion and stack
+Recursividade é um programming pattern usado para deixar o código mais limpo ou fazer algo mais simples de intender. Consiste basicamente em, dentro de uma função, chamar a própria função. Vejamos dois modos diferentes de criar uma função:
+##Com o for loop
+	function pow(x,n){
+		let result =1;
+		for(let i = 0; i<n; i++){
+			result *= x;
+		}
+		return result;
+	}
+##Com recursividade
+	function pow(x,n){
+		if(n==1) {return x;}
+		else{return (x * pow(x, n-1));}
+	}
+##
+Mais detalhadamente, quando uma função é executada, as informações dela (como o valor de this ou de outras variáveis) são armazenadas em uma data structure especial chamada de execution context.
+Quando uma função é chamada dentro de outra função (caso da recursividade), o execution context mais externo é pausado e um novo é criado. Essa dinâmica de "pausar" e criar outro em cima funciona na base de stacks(pilhas).
+Basta perceber que o primeiro execution context vai ser o ultimo a ser retornado pois todos os outros que vieram depois dele precisam ser "retirados" antes de modo que o mais externo possa voltar a ser executado.
+Como criar execution contexts demanda memória, você não pode se dar ao luxo de fazer isso várias vezes. No caso da função "pow" vão ser criadas "n" execution contexts.
+Todas as funções recursivas podem ser reescritas como loops, e loops consumem/precisam de menos memória. Entretando contruir um loop complexo é uma tarefa mais difícil.
+
+------> Recursive traversals: É uma das possiveis aplicações da recursividade.
+No exemplo a seguir, temos um objeto "casca"/conteiner chamado de company, dentro dessa company existem departamentos e nesses departamentos existem pessoas trabalhando. Queremos calcular o salario total de todas as pessoas em todos os departamentos.
+Poderiamos fazer um loop mas a estrutura do objeto é complexa, afinal de contas, um departamento pode ter um sub departamento e esses por sua vez podem ter times e assim vai.
+Utilizando a recursão podemos criar abordagens para os dois casos. caso 1: pessoas trabalham diretamente no departamento. caso 2: pessoas trabalham em sub departamentos (dentro do departamento)
+##
+	let company = {
+	  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
+	  development: {
+	    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+	    internals: [{name: 'Jack', salary: 1300}]
+	  }
+	};
+
+	function sumSalaries(department){
+	  if (Array.isArray(department)) { // caso 1, pessoas trabalham "diretamente" no departamento
+	    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
+	  } else { // caso 2
+	    let sum = 0;
+	    for (let subdep of Object.values(department)){ //fazendo um loop através dos subdepartamentos
+	      sum += sumSalaries(subdep); // chamando recursivamente a função sumSalaries. Nesse caso em específico, logo após a primeira chamada todos os casos vão recair para a situação 1
+	    }
+	    return sum;
+	  }
+	}
+
+	alert(sumSalaries(company)); // 7700
+##
+
+➽ Scheduling: methods que permitem que funções rodem depois de um certo tempo. Serve para simular uma "chamada assincrona".
+
+-----> * setTimeout: permite rodar uma função depois de um certo tempo. 
+Syntax: let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...); O delay é medido em milisegundos
+##Ex:
+	function sayHi(/*se tiver parâmetros*/) {
+	  alert('Hello');
+	}
+
+	setTimeout(sayHi, 1000/*, eles vem aqui*/);
+	//1000ms = 1 segundo
+	//repare que você deve passar somente o nome/referencia à função (sem os "()")
+##
+
+-----> * setInterval:  permite rodar uma função em um periodo, se repetindo regularmente.
+Syntax: let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...); O delay é quanto tempo em tempo a função vai ser executada
+##Ex:
+	let timerId = setInterval(() => alert('tick'), 2000);
+	//vai rodar a cada 2 segundos. Além disso é infinito, ou seja, não vai parar
+	// Temos que parar manualmente usando o setTimeout para escolher o momento em que ela vai parar e usando o method clearInterval para "efetivamente" parar.
+	setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
+##
+
+➽ Function biding:
+Basicamente, quando queremos passar uma key/value de um objeto em uma função(callback) e esse key/value usa o "this", o "contexto" do "this" é perdido.
+Em outras palavras, a função que recebe o objeto como argumento não faz a minima ideia sobre o que "this" é.
+Para resolver isso podemos usar um wrapper, ou seja, criar uma "lambda function" que reasume o "contexto" do this e então passa ele para a outra função. Esse metodo tem vulnerabilidades, sendo recomendado usar o method bind.
+
+O method bind basicamente vai pegar uma função, "juntar" o seu contexto(objeto ou qualquer outra coisa que o .this se refere) e então criar um objeto especial que pode ser chamado(callback) como uma função.
+##Ex:	
+	//obj normal
+	let user = {
+	  firstName: "John"
+	};
+	//função externa do obj que se refere 1. não tem argumentos e 2. Se refere a um this.
+	function func() {
+	  alert(this.firstName);
+	}
+	//se a função fosse chamada/executada aqui, ocorreria um erro pois, a função não faz a mínima idea do que "his.firstName" quer dizer
+	
+	//Para solucionar isso, usamos o method .bind
+	let gluedFunc = func.bind(user);
+	//dessa forma o "this." dentro da função "func" se refere ao objeto "user"
+	//apartir dai a função já sabe o que user.firstName sginifica
+	gluedFunc(); // John
+##
+
+##outro ex:
+	let user = {
+	  firstName: "John",
+	  say(phrase) {
+	    alert(`${phrase}, ${this.firstName}!`);
+	  }
+	};
+
+	let say = user.say.bind(user);
+
+	say("Hello"); // Hello, John! ("Hello" argument is passed to say)
+	say("Bye"); // Bye, John! ("Bye" is passed to say)
+##
+
+---> partial functions:
+Ainda usando o ".bind" podemos passar argumentos parcialmente ou fixar argumentos de uma função
+##Ex:
+function mul(a, b) {
+  return a * b;
+}
+
+let triple = mul.bind(null, 3);
+//é importante reparar que: "null" é o contexto. Quando null é o contexto, nada muda.
+//Porém 3 é o Primeiro parâmetro, e ele está fixando/ocupando a posição de primeiro argumento de "mul"
+//repare que como criarmos uma função separada chamada "tripe", ou seja, a função "mul" não foi alterada
+
+alert( triple(3) ); // = mul(3, 3) = 9
+alert( triple(4) ); // = mul(3, 4) = 12
+alert( triple(5) ); // = mul(3, 5) = 15
+##
+
+➽ Decorators:
+Decorator é um involucro(wrapper) de uma função que altera o funcionamento/como ela age em certas situações. Se uma função é um carro, um é um decoretor volante.
+São aspectos/features que podem ser adiciionadas a uma função, além de adaptar o uso da função para dadas situações.
+Existem dois methods que são usados para "criar" um decorator: ".call" e ".apply".
+func.call(context, ...args); e func.apply(context, args); são praticamente iguais, porém geralmente usa-se o .apply.
+Sintaxe: func.apply(context, args);
+Vai extender/"decorar" a função "func" deixando/dando o contexto do this através do "context" (igual ao que vimos com o .bind) e passando argumentos para a função (se necessário) em forma de array.
+Uma decorator genérico/ estrutura padrão que pode ser usada para basear seu decorator é:
+##
+	let wrapper = function() {
+	  return original.apply(this, arguments);
+	};
+	//nesse caso é um decorator para uma lambda function então é meio que inútil, mas da pra enteder
+##
+
+### Exemplo de um caching decorator:
+###
+###
+
+// É um decorator/mecanismo bastante usado. Basicamente você tem uma função que demora muito, e você precisa executar elas várias vezes. 
+// Para diminuir o custo computacional, você salva "resultados" da função para certas combinações de argumentos. 
+//Dessa forma se já existir o resultado da função "f(xy)" então não precisamos nem executar ela, basta ler/recuperar o dado que foi salvo
+	let worker = {
+	  slow(min, max) {
+	    alert(`combinação usada (${min}, ${max})`);
+	    return min + max;
+	  }
+	};
+	//nesse exemplo a função "pesada" está dentro de um objeto, só para dificultar mais a vida (pois precisamos do contexto para o "this")
+	
+	
+	//criando o decorator. Ele também é uma função. Só la no final vamos reatribuir a função "pesada" para ser o decorator
+	//dessa forma o decorator precisa ao mesmo tempo conter o código da função "pesada" e adicionar o que quer adicionar
+	
+	function cachingDecorator(func, hash) {
+	  let cache = new Map(); //lembre que um map é um objeto cujas keys podem ser de qualquer tipo
+	  return function() {
+	    let key = hash(arguments);
+	    if (cache.has(key)) { //se o cache já possue o resultado
+	      return cache.get(key); // então retorne esse valor, parando a função por ai
+	    }
+	
+	    //se não possue esse value, armazene o valor dessa "combinação" no cache (cache é um Map() "gabarito")
+	    let result = func.call(this, ...arguments); 
+	    //observe atentamente a utilização do method ".call". Primeiro nos passamos o contexto (pois a função "original" é um method) 
+	    //e depois nos passamos uma Array, ela vai receber os argumentos usados na função "original"
+	    cache.set(key, result);
+	    return result; // e então retorne esse valor que foi armazenado agora
+	  };
+	}
+	
+	//aqui estamos criando a função hash. Como nos "salvamos" os argumentos usados na função original, nos vamos usar eles para "decalcar"/transformar eles em strings
+	//dessa forma nós vamos, literalmente criar uma string que vai ser a "imagem" da função. tipo slow(2,1) é a chamada da função, mas a função hash vai transformar isso na string "2,1"
+	//Dessa forma, se essa combinação específica de argumentos exite em "cache", significa que a função já foi executada e tem seu resultado salvo
+	function hash(arguments) {
+	  return arguments[0] + ',' + arguments[1];
+	}
+	
+	//estamos "decorando" a função original (method do objeto worker) com a função hash e com toda a lógica "própria" do decorator
+	worker.slow = cachingDecorator(worker.slow, hash);
+	
+	let start = new Date();
+	alert( "resultado da primeira chamda: " + worker.slow(3, 5) );
+	let end = new Date();
+	alert(`Demora: ${end - start}ms`);
+	start = new Date();
+	alert( "mesma combinação implica mesmo resultado: " + worker.slow(3, 5) + "\nPorém agora cacheado" );
+	end = new Date();
+	alert(`Demora (cached): ${end - start}ms`);
+###
+###
+###
+
+⚪Alguns exemplos "so far" ⚪
+
+➽➽➽ Pirâmide de asteríscos:
+	##
+	function pir(linhas){
+	    let output = ""
+	    i = 1
+	    while (i <= linhas){
+		output += "*"
+		console.log(output);
+		i++
+	    }
+	}
+	//Observe que estamos concatenando à string ao usar "+=" a cada iteração.
+	pir(7)
+	##
+
+		
+➽➽➽ FizzBuzz problem:
+	se divisível por 3 => Fizz
+	se divisível por 5 => Buzz
+	se divisível por 3 e por 5 => FizzBuz
+		##	
+		function fizzBuzz(entrada){
+			if (typeof entrada !== "number")
+				return "NaN"
+			else if (entrada % 3 === 0)
+				return "Fizz"
+			else if (entrada % 5 === 0)
+				return "Buzz"
+			else if (entrada % 3 === 0 && entrada % 3 === 0)
+				return "FizzBuzz"
+      			else{return "Azarento"}
+		}
+		alert(fizzBuzz(11))
+		##
+
+
+⚪ Objects ⚪
+Analogia é perfeita: Um carro é um objeto.
+	- Todos os carros tem as mesmas properties (cor, tamanho, peso) mas seus values são diferentes
+	- Todos os carros tem os mesmos methods (ligar, freiar, etc) mas eles são acionados em momentos diferentes.
+
+É uma boa prática usar a keyword "const" para definir/declarar um objeto, porém objetos em JS são especiais por serem dinâmicos (podem ser alterados) e portanto isso fica a critério próprio.
+Você pode declarar/criar um objeto de duas formas:
+##
+  let user = new Object(); // "object constructor" syntax
+  let user = {};  // "object literal" syntax
+##
+Você pode acessar o valor de uma propertie de duas formas:
+	- objectName.propertyName (ex: car.color)
+	- objectName["propertyName"] (ex: car["type"])
+	
+Methods	são as funções/ações que aquele objeto possue/cotem e portanto pode executar. Basta criar/declacar o value de uma key como uma function:
+##
+const person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName; // repare na indentação
+  }
+};
+##
+
+➽ Computed properties: Você pode dar o nome de uma key de forma dinâmica (mais não pode acessar esse nome de forma dinâmica).
+##
+	let fruit = prompt("Which fruit to buy?", "apple");
+	let bag = {
+	  [fruit]: 5, // o nome da key é o valor da variável "fruit"
+	};
+	alert( bag.apple ); // Porém para fazer o alert nos precisamos saber e especificar qual o nome da key ("bag.[fruit]" não funciona).
+##
+
+➽ Criando objetos dinamicos com "this":
+Você pode usar a keywork "this" dentro de um method de modo a receber um valor do prompt. Depois de chamar esse método, você pode armazenar esse valor "dinamicamente" como um value. Dentro de um objeto.
+##Ex:
+	let person = {
+		name: this.name,
+	  age: this.age,
+	  email: this.email,
+	  readData(){
+	  	this.name = +prompt("Diga seu nome");
+	    this.age = +prompt("Diga sua idade");
+	    this.email = +prompt("Diga seu email");
+	  }
+	};
+	person.readData(); //vai fazer os prompts e pegar os dados
+
+	if(person.age<18){
+		alert(`Olá ${person.name}, infelizmente você não pode entrar =(`);
+	}else if(person.age>75){
+		alert("Claro que você também pode usar esses dados para alterar o HTML");
+	} else{
+		alert("ABACATE");
+	}
+##
+
+➽ “for…in” loop:
+Basicamente você pode iterar dentro de um objeto/array. No caso dos objetos é importante prestar atenção na sintaxe para diferenciar as keys dos values:
+##
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}
+##
+
+➽ Copiando objetos:
+Basciamente se você tem um objeto e você cria outra variável e iguala ele a esse objeto, você não está fazendo uma cópia independente, está criando uma nova referencia para o objeto.
+ 
+Para efetivamente clonar um objeto pode-se usar o method "Objct.assign":
+	##
+	const oldObj = { abacate: 1, sim: false };
+	const newObj = Object.assign({}, oldObj); //{} significa que copia todo o objeto.
+	console.log(oldObj)
+	console.log(newObj)
+	##
+	
+	
+➽ Object.keys, values, entries:
+Como objects são bastante flexiveis e podem se tornar complexos, existe uma "entidade" chamada de Object que se refere a estrutura do objeto.
+	Object.keys(obj) retorna uma array com as keys.
+	Object.values(obj) retorna uma array com os values.
+	Object.entries(obj) retorna o key/value pair em forma de array.
+E como o resultado desses methods são arrays, você pode fazer uma iteração sobre eles.
+
+
+➽ Object destructuring: 
+Consiste em "desmanchar" (não destruir) partes de um objeto e atribuir a novas variáveis. A sintaxe básica é: "let {var1, var2} = {var1:…, var2:…}". Mas praticamente usa-se:
+## Como funciona:
+	let options = {
+	  title: "Menu",
+	  width: 100,
+	  height: 200
+	};
+
+	let {title, width, height} = options;
+
+	alert(title);  // Menu
+	alert(width);  // 100
+	alert(height); // 200
+##
+
+## Exemplo mais útil:
+	let options = {
+	  size: {
+	    width: 100,
+	    height: 200
+	  },
+	  items: ["Cake", "Donut"],
+	  extra: true
+	};
+
+	// destructuring assignment split in multiple lines for clarity
+	let {
+	  size: { // put size here
+	    width,
+	    height
+	  },
+	  items: [item1, item2], // assign items here
+	  title = "Menu" // not present in the object (default value is used)
+	} = options; //repare que options é nome do objeto base
+
+	alert(title);  // Menu
+	alert(width);  // 100
+	alert(height); // 200
+	alert(item1);  // Cake
+	alert(item2);  // Donut
+##
+	
+➽ Factory function: 
+É uma função que cria um objeto.
+	##
+	function abc(prop1, prop2, prop3){
+		return {
+		  keyUm: prop1,
+		  keyDois: prop2,
+		  keyTres: prop3
+		}
+	}
+	const obj1 = abc(1, 2, 3) 
+	console.log(obj1)
+	##
+
+➽➽➽ Constructor Functions: 
+Também é utilizada para criar objetos, porém ela é como se fosse um "classe" do python (um blueprint para objetos). 
+Utiliza o "new" para criar um elemento dessa "classe".
+Normalmente constructor functions começam com letra maiúsculas para se diferenciar.
+Repare que, enquanto as factory functions usam "return" para se referir aos seus parâmetros, uma constructor function utiliza o "this." para se referir ao seus parâmetros
+	##
+	function objMaker(prop1, prop2, prop3){
+	  this.keyUm = prop1,
+	  this.keyDois = prop2,
+	  this.keyTres = prop3,
+	  this.methodUm = function(){
+	    console.log("methodUm")
+	  };	
+	}
+	//Até agora só criamos a "classe", agora temos que efetivamente criar o objeto.
+	const obj1 = new objMaker("Abacate","ABACATE","a b a c a t e");
+	//repare que como estamos usando um "constructor" temos que usar a keyword "new"
+	console.log(obj1);
+	##
+
+Exemplo de uso:
+	##
+	function exibirStr(obj){
+	    for (let key in obj){
+		let value = obj[key];
+		if (typeof(value) === "string"){
+		    console.log(key, value)
+		}
+	    }
+	}
+	// O "pulo do gato" é perceber que "key in obj" vai pegar a keys do objeto e que "obj[key]" se refere ao **value** de cada key.
+	// Tipo, em momento nenhum em "obj[key]" nos escrevemos "value", mas no final é o que obtemos.
+	const abacate = {
+	    string1: "asasa",
+	    string2: "495485",
+	    number1: 9,
+	    boolean1: true
+	}
+	exibirStr(abacate)
+	##
+
+Usando a keyword "new" você pode criar uma variável como um objeto de um tipo específico. Ex:
+	##
+	const x = new String();        // Declares x as a String object
+	const y = new Number();        // Declares y as a Number object
+	const z = new Boolean();       // Declares z as a Boolean object
+	const w = new Date();	       // Declares z as a object (called Date)
+	##
+
+➽ OOP: Quando você usa objetos para representar entidades(funções, uma parte da memória, etc) você está realizando/fazendo: object-oriented programming.
+Essa abordagem é versátil e amplamente utilizada por programadores. É como se fosse "o jeito de certo de calçar um sapato". 
+Você pode calçar de diferentes formas, mas noramlmente você vai querer/preferir calçar do "jeito certo".
+Isso é tão verdade que  foi daí que o conceito de Design patterns foi criado. Isso basicamente se refere a um conjunto de estratégias/modos de resolver problemas comuns/recorrentes usando OOP.
+Design patterns === "how to solve recurring problems". Livro: "Design Patterns: Elements of Reusable Object-Oriented Software"
+
+➽ Chaining: É quando você faz "obj.prop1.prop2.method1.method2", tipo, você vai fazendo vários ".algumaCoisa" seguidos. Isso pode ser útil em algumas situações.
+Por exemplo, existem situações onde vamos precisar usar o número da casa de um usuário através de: "user.adress.street.number". Reparem que tem 4 properties aí.
+Basciamente para que você possa usar chaining você deve rotornar o próprio objeto (e deixar para fazer o output separadamente), de modo que o próximo ".algumaCoisa" vai se referir ao objeto recem alterado. Usa-se "return this";
+---> Optional chaning: As vezes, alguams informações são opcionais, de modo a não existencia delas faz o código parar por causa do erro. É melhor retornar undefined que parar todo o programa.
+Tipo, no exemplo anterior, pode ser que o user tenha dado o número da casa dele, mas não tenha dado a rua, isso vai gerar um erro que vai parar todo o código. Não queremos isso.
+Para evitar o erro, e retornar "Undefined", precisamos usar o operador "?.". Ele SÓ DEVE ser usado quanto uma property possa ser nula.
+Ex: "user.adress.street?.number". Dessa forma, a obtenção de "street" vai ser opcional, de modo que se ELE não existir, o código simplismente retorna undefined.
+Repare que é só ele. Se user, adress ou number não existirem, o código vai dar erro de qualquer jeito. Então, o que fazer? Usar "?." nos elementos certos e fazer um código limpo.
+O elemento que está antes(a esquerda) do "?." deve existir/ser declarado, so não precisa ter um valor. O "?." não pode ser usado para ler valores, tipo, deixar a entrada de um parâmetro como opcional. Essa "funcionalidade" existem em frameworks e no JS através de outras formas.
+
+
+➽ JSON: JavaScript Object Notation foi criada, como o nome ja diz, para se transmitir o conteúdo de objetos do javaScript através da internet(HTTP). Com o passar to tempo a formatação se formou padrão para transmissão de dados na internet e é usada em outras linguagens.
+No javaScript, JSON basicamente é a conversão de um objeto para uma string, com uma formatação especial. Para fazer essa conversão usamos JSON.stringify(obj);
+Esse method ignora certas properties, como methods, symbolic keys/values e o null.
+##Ex:
+	let student = {
+	  name: 'John',
+	  age: 30,
+	  isAdmin: false,
+	  courses: ['html', 'css', 'js'],
+	  wife: null
+	};
+
+	let json = JSON.stringify(student);
+
+	alert(typeof json); // we've got a string!
+
+	alert(json);
+	/* JSON-encoded object:
+	{
+	  "name": "John",
+	  "age": 30,
+	  "isAdmin": false,
+	  "courses": ["html", "css", "js"],
+	  "wife": null
+	}
+	*/
+##
+Para fazer o caminho inverso (JSON -> object "nativo") usamos: JSON.parse.
+##
+	let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+	let user = JSON.parse(userData);
+	alert( user.friends[1] ); // 1
+##
+
+
+➽ Garbage collection:
+Diferente da linguagem C, onde a a memória deve ser monitorada e controlada cautelosamente, o javaScript possue um algorítimo interno que realiza limpeza de memória de modo a "deletar" partes do código que são/ficam inúteis.
+Em JS objetos(quase tudo) são mantidos na memória enquanto eles são "alcançaveis" pelo "root" do JS, que é chamado de <global>.
+Ou seja, se você diz que algo é null e ele não é percebido pelo <global> (não é passado como argumento, não serve de base para uma variável, etc), então ele será deletado.
+E, analogamente, se algo é usado definido como null, é passado como parâmetro E tem conexação com o <global> então ele não será deletado.
+Importante notar a utilização do "E" na ultima linha pois, não basta que o objeto esteja ligado à outro, ele TAMBÉM precisa estar ligado até o <global>, otherwise ele e os outros objetos que estão ligados à ele seriam "Unreachable islands"
+
+
+
+⚪ Data Structures ⚪
+	➽  Arrays: São Global Objects que são usadas para armazenar os dados na forma de vetores (arrays, listas ou o que mais você queira chamar). 
+	São criados ao usar colchetes ([]) e são ordenadas. Ex:
+			##
+			let array = ["value1", 2, true, null]
+			// Você pode acessar um elemento ao usar a sua posição entre colchetes:
+				console.log(array[3]) //vai ser null (é do tipo null, não uma string literal)	
+			##
+			-> Para adicionar um elemento em array que ja existe:
+				##
+				const array = [1,2,3]
+				//no início:
+				array.unshift("quarto");
+				console.log(array) 
+				//no final:
+				array.push(0);
+				console.log(array)
+				##
+
+			-> Remover elementos de uma array.
+				## 
+					const array = ["a", "b", 3];
+					//no início:
+					array.shift();
+					//no final:
+					array.pop();
+				##
+				
+			-> Procurando elementos do tipo primitivo primitivos em uma array:
+				## 
+				const array = ["a", "b", 3]
+				array.indexOf("a"); 
+				//o resultado é 0 (pois "a" tem esse index)
+				array.includes("a") 
+				// O resultado é true (pois ele existe na array)
+				##
+
+			-> Procurando elementos do tipo referência em uma array:
+				-> Utiliza o method ".find". O ".find" aceita uma função como argumento de modo a filtrar o resultado.
+					## 
+					const array = [
+					  {id: 1, name: "a"},
+					  {id: 2, name: "b"}
+					]
+					console.log(
+					array.find(function(array){
+					  return array.name === "a";
+					}));
+					##
+				-> dessa forma o resultado vai ser o elemento da array cujo value da key name é igual a "a".
+
+			-> Para "esvaziar" uma array Basta fazer:
+				##
+				array.length = 0;
+				##
+
+			-> Para jutar/combinar arrays:
+				1.Antigo:
+				##
+				const array1 = [1,2,3];
+				const array2 = [4,5,6];
+				const arrayR = array1.concat(array2);
+				console.log(arrayR);
+				##
+				
+				2. Operador spread:
+				##
+				const array1 = [1,2,3];
+				const array2 = [4,5,6];
+				const arrayR = [...array1,...array2];
+				console.log(arrayR);
+				##
+
+			-> Para clonar arrays (usar o operador spread):
+				##
+				const oldArray = [1,2,3];
+				const newArray = [...oldArray];
+				##
+				
+			-> For..Each (Uma maneira de iterar sobre uma array):
+				##
+				const array = [1,2,3,4,5];
+				array.forEach((element, index) => console.log(element, index));
+				##
+			
+			----> Array destructuring:
+				É o ato de "dividir" os itens de uma array em variáveis separadas para que você possa passar eles em funções e etc.
+				Simples e basicamente, se você tem: "let arr = ["John", "Smith"];", você pode fazer "let firstName = arr[0];" e "let surname = arr[1];"
+				Outra maneira de escrever seria: "let [firstName, surname] = arr;"
+				Essa ideia de "desmanchar"(não destruir) serve desde que você use um iterable do lado direito da igualdade e é tem como foco dar mais flexibilidade.
+
+	➽ Iterables:
+			Iterables são objetos que podem ser iterados. No contexto do javaScript, são objetos que podem ser iterados usando o "for..of" loop.
+			Para criarmos um iterable object. Nos podemos criar um objeto normal e, externamente, fazer ele um iterable, ou fazer ele ser um iterable naturalmente. 
+			Vamos ver o segundo caso.
+			Para um objeto ser iterável ele precisa de duas coisas:
+				1. Usar o method especial: Symbol.iterator para transformar ele em iterator
+				2. Usar o method especial "next" para passar para o proximo termo da iteração. 
+			Basicamente é você quem vai dizer como, quando, com quais elementos e com que propósito a iteração vai ocorrer.
+			Vejamos um exemplo:
+				##
+				//criando o objeto. 
+				//O intuito é: fazer como que o object range, possa ser iterado do ponto "from", até o final "to".
+				  let range = {
+				  from: 1,
+				  to: 5,
+				  
+				//criando/definindo o iterator, ainda dentro do objeto.
+				  [Symbol.iterator]() {
+				    this.current = this.from;
+				    return this;
+				  },
+				//fazendo a "logica" para avançar com a iteração
+				  next() {
+				    if (this.current <= this.to) {
+				      return { done: false, value: this.current++ };
+				    } else {
+				      return { done: true };
+				    }
+				  }
+				};
+				
+				//usando o for..of loop para ver se ele é um iterable
+				for (let num of range) {
+				  alert(num); // 1, then 2, 3, 4, 5
+				}
+				##
+		
+			OBS: 	"Iterables" are objects that implement the "Symbol.iterator" method.
+				"Array-likes" are objects that have indexes and ".length", so they look like arrays.
+	
+	➽ Map & Set
+		1. Map is a collection of keyed data items, just like an Object. A principal diferença é que o Map permite de as Keys sejam de qualquer tipo (em objects, elas devem ser strings).
+		   -> Principais properties:
+			new Map() – creates the map.
+			map.set(key, value) – stores the value by the key.
+			map.get(key) – returns the value by the key, undefined if key doesn’t exist in map.
+			map.has(key) – returns true if the key exists, false otherwise.
+			map.delete(key) – removes the value by the key.
+			map.clear() – removes everything from the map.
+			map.size – returns the current element count.
+		   
+		   -> Como iterar em um Map:
+			Pode ser feito através da keys com "map.keys()", através dos values com "map.value()" e através de key/value pair através de "map.entries()".
+			##Exemplo:
+			let recipeMap = new Map([
+			  ['cucumber', 500],
+			  ['tomatoes', 350],
+			  ['onion',    50]
+			]);
+
+			// iterate over keys (vegetables)
+			for (let vegetable of recipeMap.keys()) {
+			  alert(vegetable); // cucumber, tomatoes, onion
+			}
+
+			// iterate over values (amounts)
+			for (let amount of recipeMap.values()) {
+			  alert(amount); // 500, 350, 50
+			}
+
+			// iterate over [key, value] entries
+			for (let entry of recipeMap) { // the same as of recipeMap.entries()
+			  alert(entry); // cucumber,500 (and so on)
+			}
+			##
+
+		2. A Set is a special type collection. Is “set of values” (without keys), where each value may occur only once.
+		   -> Princiapis methods
+			new Set() – creates the set
+			set.add(value) – adds a value, returns the set itself.
+			set.delete(value) – removes the value, returns true if value existed at the moment of the call, otherwise false.
+			set.has(value) – returns true if the value exists in the set, otherwise false.
+			set.clear() – removes everything from the set.
+			set.size – is the elements count.
+		   ##Exemplo:
+		   let set = new Set();
+		   let john = { name: "John" };
+		   let pete = { name: "Pete" };
+		   let mary = { name: "Mary" };
+
+		   // visits, some users come multiple times
+		   set.add(john);
+		   set.add(pete);
+		   set.add(mary);
+		   set.add(john);
+		   set.add(mary);
+
+		  // set keeps only unique values
+		  alert( set.size ); // 3
+
+		  for (let user of set) {
+		    alert(user.name); // John (then Pete and Mary)
+		  }
+		   ##
+		
+	➽ Dates: São object-based e, basicamente não tem muita utilidade. Se você precisa/trabalha com datas recomendo pesquisar. Vou apresentar algumas coisas úteis:
+		-> Calculando o tempo de execução:
+			##
+			let start = Date.now(); // criando uma nova data referente ao tempo atual (antes de algo)
+			//"Date.now()" é fundamentalmente diferente de "new Date()", porém funciona da mesma forma.
+			// do the job
+			for (let i = 0; i < 100000; i++) {
+			  let doSomething = i * i * i;
+			}
+
+			let end = Date.now(); // criando uma nova data referente ao tempo atual (depois de algo)
+			// delta t é final menos inicial, e, subtraindo datas obtemos o resultado em milisegundos
+			alert( `The loop took ${end - start} ms` );
+			##
+			Se você precisa fazer uma analise "seria" provavelmente o method bench() será mais útil.		
+		
+		
+	➽ Linked lists: É uma data structure que repete a sua estrutura de maneira "recursiva". Se você tem listas muito grandes, reordenar elas ou então tirar/colocar um elemento na primeira posição é uma operação "muito cara". 
+	Linked lists servem a esse propósito de modo que, elas são uma espécie de array onde o próximo elemnto é definindo de uma maneira padrão. 
+	Os elementos de uma linked list precisam ter: 1. Um valor 2. Um proximo(next). O próximo do ultimo elemento é sempre o null
+	Por exemplo: 1 -> 2 -> 3 -> null. Nesse caso o primeiro elemento "1" se refere ao seu proximo (next) "2", esse se refere ao "3".
+	Se eu quiser adicionar um novo valor depois da posição 2, eu precisaria (normalmente) reordenar toda a array. Mas com linked lists basta eu fazer um "remendo".
+	Basicamente eu vou guardar a informação que "elemento posição 2 aponta para valor 3", dessa forma se eu adicionar o valor 4 depois da posição 2 eu ficararia com 1 -> 2 -> 4 -> ?
+	O elemento da posição 2 passaria a apontar para o valor 4. Agora usando a informação que foi salva, passamos ela para o novo valor adicionado de modo que: 1 -> 2 -> 4 -> 3 -> null
+	OBS: tecnicamente linked lists são arrays mais em JS usa-se chaves {} para cria-los
+	##Exemplo:
+		let list = { value: 1 };
+		list.next = { value: 2 };
+		list.next.next = { value: 3 };
+		list.next.next.next = { value: 4 };
+		list.next.next.next.next = null;
+		//Para adicionar um valor em qualquer posição basta se refeir ao .next correto e então adicionar mais um ".next" no ultimo elemento (pois você acabou de adicionar um)
+	##
+	
+
+⚪ relação/Conexão do JS com o HTML ⚪
+Um dos muitos methods (suponha que não seja mesma coisa que em python) do JavaScript é o "getElementById()". Uma vez que você definiu um id para um element em HTML você pode alterar literalmente qualquer coisa nele, desde seu conteúdo (com ".innerHTML") até seu CSS (com ".style.<propertie>").
+Exemplo:
+<!-- dentro do <body> de um html file -->
+<p>Aqui o JavaScript vai mudar o valor do src (source) de uma imagem em HTML, o "gatilho" para que a mudança ocorra vai ser o pressionamento do botão</p>
+<button onclick="document.getElementById('myImage').src='imagem2'">Muda a imagem</button>
+<img id="myImage" src="imagem1" style="width:100px">
+<button onclick="document.getElementById('myImage').src='imagem1'">Restaura a original</button>
+
+A tag <script></script> é usada quando você quer escrever um código seguindo a sintaxe do JavaScript dentro do documento HTML. Você pode colocar quantos <script> você quiser. Eles podem ficar tanto no <head> quanto no <body> (quanto  nos dois). Você ainda usar um link para um arquivo externo (mesmo esquema que o CSS). Para isso você usa <script src="file.js"></script> que, mais uma vez, pode ficar tanto no <head> quanto no <body>.  Nesse arquivo externo (file.js) você escreve as funções e etc na sintaxe do JavaScript, não sendo necessário usar a tag <script>. Por exemplo, se você definiu uma função chamada de "funcao1" no documento.js externo, para  usar no html basta que você faça um link com o arquivo e coloque a função "funcao1" como parâmetro do elemento que vai ser modificado. Vamos discutir mais sobre isso adiante.
+
+JavaScript pode retornar/display o output de uma ação  de 4 maneira s principais.
+	1. innerHTML: Dessa forma você troca efetivamente o conteúdo ou uma property de um HTML element. É idal quando você já sabe qual o conteúdo definitivo depois de uma ação.
+	2. document.write(): É usado para fazer testes. Tem o mesmo efeito prático que o innerHTML porém se você usa document.write() depois que o documento HTML foi carregado, você apagará todo o conteúdo existente. Por exemplo, durante o carregamento da página o script é carregado, nada ocorre, porém se após o carregamento da página o script for carregado (ao clicar em um botão por exemplo) todo o conteúdo do html vai ser deletado (da página) sobrando somente o output do document.write().
+	3. window.alert(): é usado para mostar uma caixa/box que aparece no topo do navegador. Você só consegue interagir com a página depois que você cancela/interage com a alert box/window. Ex: <script> window.alert(5 + 6); </script>
+	4. console.log(): vai mandar uma mensagem no console do browse (Aperte F12 e vá na aba console).
+
+Em outras palavras, o JavaScript NÃO TEM nenhuma função como o "print()" do python. Ele só consegue redirecionar algum output através dessas 4 formas, o que é chato. A mais verśatil (que da menos trabalho para ver o output) é o alert() (não sendo obrigado colocar "window." no início)
+
+
+⚪ Introdução ao testing ⚪
+testing é processo de automaticamente realizar testes no seu código de modo a verificar se ele sempre funciona, ou se em certos casos ele falha.
+Existem várias ferramentas que disponibilizam features para fazer/criar testes, e nessa vamos usar o Mocha(principal framework. Possue as funções "describe" e "it"), Chai e Sinon (libraries complementares).
+
+Existem diversos mindsets/metodologias para realizar testes, o mais fundamental é o BDD: Behavior Driven Development.
+Consiste em: testes, documentação/catalogação e exemplos.
+
+Vamos cconsiderar a criação de uma função pow(x,n) que eleva o valor x à potencia n (sem o usar o operador "**") com n >= 0.
+Antes mesmo de começar a fazer o código nos já sabemos o que esperar. Por exemplo, sabemos que se x = 2 e n=3 o resultado será 8.
+Nós podemos colocar esse "fato" como pre-requisito do nosso código, como uma prova em que o código tem que passar. Isso é chamado de "specification" ou "spec". Nesse exemplo:
+##
+describe("pow", function() {
+  it("raises to n-th power", function() {
+    assert.equal(pow(2, 3), 8);
+  });
+});;
+##
+Uma spec tem 3 partes básicas:
+1. A parte do "describe": 
+	describe("title", function() { ... })
+	Vai dizer/explicitar qual funcioladidade/teste nos estamos criando (O segundo argumento ser uma função é padrão)	
+2. A parte do "it": 
+	it("use case description", function() { ... })
+	Você com suas palavras diz sobre o que o teste se trata/ qual o propósito da funcionalidade e dentro da function(segundo parâmetro) você coloca o código que vai testar a funcionalidade.
+3. A parte do "assert.equal":
+	assert.equal(value1, value2)
+	É o teste/prova pelo qual a funcionalidade(nesse caso função) tem que passar. No primeiro valor você passa o código que vai ocorrer, e no segundo valor você coloca qual será o resultado correto desse código.
+
+➽ development flow
+De modo resumido, quando você desenvolve um app ou cria uma nova funcionalidade:
+1. Cria uma spec que diz o que o código tem que fazer e desenvolve testes.
+2. desenvolve o código inicial
+3. roda o código, econtra erros, corrige os erros, e então passa nos testes.
+4. nesse ponto você tem uma versão inicial usável de um app, por exemplo.
+5. Você planeja adiconar novas features. Volta para (1.) e repete o ciclo.
+
+➽ Prática
+use  código abaixo para analizar/perceber como testes são feitos.
+##
+	<!DOCTYPE html>
+	<html>
+	<head>
+	  <!-- add mocha css, to show results -->
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+	  <!-- add mocha framework code -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+	  <script>
+	    mocha.setup('bdd'); // minimal setup
+	  </script>
+	  <!-- add chai -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+	  <script>
+	    // chai has a lot of stuff, let's make assert global
+	    let assert = chai.assert;
+	  </script>
+	</head>
+
+	<body>
+
+	  <script>
+	    function pow(x, n) {
+
+	  }
+	  </script>
+
+	  <!-- the script with tests (describe, it...) -->
+	  <script>
+	    describe("pow", function() {
+
+	      it("2 raised to power 3 is 8", function() {
+		assert.equal(pow(2, 3), 8);
+	      });
+
+	      it("3 raised to power 4 is 81", function() {
+		assert.equal(pow(3, 4), 81);
+	      });
+
+	    });
+	  </script>
+
+	  <!-- the element with id="mocha" will contain test results -->
+	  <div id="mocha"></div>
+
+	  <!-- run tests! -->
+	  <script>
+	    mocha.run();
+	  </script>
+	</body>
+	</html>
+##
+</html>
+
+Vamos analizar duas seções em específico:
+## Onde fazemos nossas specs
+	  <!-- the script with tests (describe, it...) -->
+	  <script>
+	    describe("pow", function() {
+	      it("2 raised to power 3 is 8", function() {
+		assert.equal(pow(2, 3), 8);
+	      });
+	      it("3 raised to power 4 is 81", function() {
+		assert.equal(pow(3, 4), 81);
+	      });
+	      it("for negative n the result is NaN", function() {
+	    	assert.isNaN(pow(2, -1));
+	      });
+	      it("for non-integer n the result is NaN", function() {
+	    	assert.isNaN(pow(2, 1.5));
+	      });
+	      });
+	    });
+	  </script>
+## A logica é bem simples. Basta incorporar isso no dia a dia do seu código. 
+
+##A função em sí
+  <script>
+    function pow(x, n) {
+    if (typeof(n) !== "number") return NaN;
+    if(n < 0) return NaN;
+      let result = 1;
+      for(let i=0; i<n; i++){
+        result *= x;
+      }
+      return result;
+    }
+  </script>
+## Esse já é o a função correta. Recomendo "alterar ela" de modo a existirem erros.
+
+-> Também podemos criar varios "it" Através de um loop, meio que automático:
+##
+	describe("pow", function() {
+	  function makeTest(x) {
+	    let expected = x * x * x;
+	    it(`${x} in the power 3 is ${expected}`, function() {
+	      assert.equal(pow(x, 3), expected);
+	    });
+	  }
+	  for (let x = 1; x <= 5; x++) {
+	    makeTest(x);
+	  }
+	});
+##
+
+➽ Polyfills and transpilers
+-> Polyfills: Automaticamente criam/definem funções novas qeu não existem em engines velhas, para que elas possam entender.
+-> Transpilers: Automaticamente convertem códigos modernos para codigos antigos, dessa forma engines velhas podem entender.
+
+
+⚪ Prototypes & inheritance ⚪
+
+➽ Prototypal inheritance: 
+É um modo/metodo em programação no geral que permite estender funcionalidades/objetos existentes.
+Imagine que você tem um objeto chamado de user e que você quer criar outros 2: admin e guest. Independente de como você vai criar esses objetos ambos vão ser users, concorda?
+Dessa forma podemos usar o objeto user que já existe e estender ele de modo a reusar algumas partes dele e implementar outras partes dentro de cada objeto.
+
+Em JS existe um propriedade escondida dos objetos chamada de [[Prototype]] que aponta para "null" ou para outro objeto. 
+Basicamente quando você cria um objeto, [[Prototype]] é como se fosse o DNA herdado do objeto. Como, naturalmente objetos não herdam caracteristicas de outros objetos, logo [[Prototype]] é naturalmente null.
+Para mudar o valor de [[Prototype]] e fazer ele apontar para outro objeto, podemos usar o __proto__. Vamos usar ele nesses exemplos iniciais, porém ele está em desuso
+##Ex:	
+	//objeto "inicial"/acestral
+	let animal = {
+	  eats: true,
+	  walk() {
+	    alert("Animal walk");
+	  }
+	};
+	//objeto "descendente". Queremos que ele herde as properties de "animal"
+	let rabbit = {
+	  jumps: true,
+	  __proto__: animal //basta passar um link/DNA do objeto "animal" e agora o obj "rabbit" também possue essas properties
+	};
+	
+	//Outro objeto. Uma espécie de coelho. Ele é claramente um coelho E um animal
+	let longEar = {
+	  earLength: 10,
+	  __proto__: rabbit //como rabbits já tem o "DNA" de um animal, basta ter o DNA do "rabbit"
+	};
+
+	longEar.walk(); //Naturalmente não tem property "walk", é pega do obj "animal"
+	alert(longEar.jumps); //Naturalmente não tem property "jump", é pega do obj "rabbit"
+##
+
+O "this" não é agetado pelo [[Prototype]], ele sempre vai se referir ao objeto antes do ponto.
+Em loops, se você fizer ele usando "Object.keys(obj)" você só verá as properties da "geração atual" (propria de obj) mas se você fizer o loop for..in ele vai passar por todos as properties, até as herdadas.
+
+➽ F.prototype:
+Você também pode herdar properties sem usar o __proto__. Basta usar a "new" sintax e usar o method ".prototype"
+##Ex:
+	//obj "original"/ancestral
+	let animal = {
+	  eats: true
+	};
+
+	//constructor function.
+	function Rabbit(name) {
+	  this.name = name;
+	}
+	
+	//dizendo que os objs criados apartir constructor function "rabbit" são descendentes de "animal"
+	Rabbit.prototype = animal;
+
+	let rabbit = new Rabbit("White Rabbit"); //criando um objeto "diferenciado"
+	alert( rabbit.eats ); // true
+##
+OBS: existe uma "property universal" chamada de "constructor", tal que a seguite igualdade é verdade:
+F.prototype = { constructor: F }
+É tipo "ln(x)" e "e^x", são a mesma coisa, só que escritas de maneiras diferentes.
+
+➽ Substitutos do __proto__:
+Como citado, o __proto__ está em desuso e existem métodos mais modernos de se definir o prototype de um objeto:
+Object.create(ancestral, [descriptors]) – cria um obj vazio com o prototype do obj "ancestral"
+Object.getPrototypeOf(obj) – returns the [[Prototype]] of obj.
+Object.setPrototypeOf(obj, ancestral) – sets the [[Prototype]] of obj to "ancestral".
+
+##Ex da sintaxe:
+	//obj "acestral"
+	let animal = {
+	  eats: true
+	};
+
+	// criando um novo obj, vazio, como mesmo DNA/properties que "animal"
+	let rabbit = Object.create(animal);
+	//repare na utilização da "entidade" "Object".
+
+	alert(rabbit.eats); // true
+	alert(Object.getPrototypeOf(rabbit) === animal); // true
+	Object.setPrototypeOf(rabbit, {}); // change the prototype of rabbit to {}
+##
+Com esses methods podemos fazer uma cópia "real" (ao usar o "...obj" só copiamos os valores):
+##
+let clone = Object.create(Object.getPrototypeOf(obj1), Object.getOwnPropertyDescriptors(obj1));
+##
+
+⚪ Classes ⚪
+
+➽ syntax e conceitos básicos
+Classes são um conceito utilzado em OOP que serve para criar objetos padronizados/com um conjunto inicial de dados semelhantes.
+Sintaxe:
+class MyClass {
+  // class methods
+  constructor() { ... }
+  method1() { ... }
+  ...
+}
+Apartir daí basta fazer: let objeto = new Myclass(<args>); para criar um objeto.
+O objetivo das classes é focar mais na utilização dos methods. Uma observação importante é que: você não deve colocar virgulas para separar os methods.
+O method fundamental das classes é o "constructor". É dentro dele que você coloca as "key/values" que o objeto vai ter.
+Por exemplo, se o objeto vai conter uma key chamada de name, podemos fazer:
+##
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  sayHi() {
+    alert(this.name);
+  }
+}
+
+let user = new User("John");
+user.sayHi();
+##
+
+Classes são uma maneira mais simples e versátil de se usar constructor function (que já foram citadas no caṕitulo sobre objetos). Na realidada, uma classe é uma constructor function que possue um prototype.
+
+OBS: dentro de uma classe você também pode criar key/values diretamente, mas isso é "restritivo" uma vez que esse mesmo valor de se repete para todos os objetos.
+
+---> static properties: São properties que não são de um objeto que pertence a classe, mas sim a toda a classe. Pode-se dizer que são properties que todos os objetos tem porque a própria classe o tem.
+Para criar ele dentro da classe, você usa a keyword static (static propNova = "Abacate") e para criar ele "fora" da classe basta você fazer "classe.propNova = 'Abacate'"
+
+➽ Importância das arrow functions: 
+Como já sabemos, o "this" pode perder o "contexto" em algumas situações(quanto tentamos fazer o código responsível/moldável).
+Juntando isso ao fato de que classes são baseadas em methods, temos um problema! Correto?
+Não, basta você usar arrow functions ao criar os methods (não o constructor) que o "contexto" não é perdido.
+##Ex:
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+  /* versão 1
+  click() {
+    alert(this.value);
+  }
+  */
+  //versão ideal
+  click = () => {
+    alert(this.value);
+  }
+  
+}
+
+let button = new Button("hello");
+
+setTimeout(button.click, 1000); // se a versão 1 fosse a ativa, ocorreria perda de contexto
+##
+
+➽ getters/setters: Methods especiais de classes
+getter: é um method que usa da keyword "get" para retornar/mostrar um valor de objeto/classe de forma dinâmica. Ou seja, de um valor que ainda não foi definido.
+As funções criadas com o get não podem ter nenhum parâmetro.
+setter: é um method que usa a keyword "set" e serve para criar/alterar um valor dentro de um objeto/classe.
+As funções criadas com o set só podem ter exatamente 1 parâmetro.
+Só deixando claro, get e set são keywords que servem para criar funções com propósitos específicos.
+
+##Exemplo:
+class Aluno {
+    // usando um constructor para definir as key/values iniciais.
+    constructor(nome, curso, semestre){
+        this.nome = nome,
+        this.curso = curso,
+        this.semestre = semestre
+    }
+    // criando um method para retornar o nome do aluno antes mesmo dele ser definido
+    get nomeAluno(){
+        return this.nome
+    }
+    //criando um nome para o aluno se ele não existir e alterando se existir
+    set nomeAluno(nomeAluno) {
+        this.nome = nomeAluno
+    }
+}
+
+let lucas = new Aluno('', 'Engenharia', 5)
+lucas.nomeAluno = 'Lucas'
+console.log(lucas.nome) //Lucas
+lucas.nomeAluno = 'Abacate';
+console.log(lucas.nomeAluno) // "Abacate" usando getter
+##
+
+➽ Class inheritance
+Lembra do que falamos sobre prototypes? Vamos usar isso aqui.
+Basicamente para fazer uma classe herdar methods e properties de outra classe basta você usar a keyword "extends".
+##Ex:
+//classe normal
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+  run(speed) {
+    this.speed = speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+}
+//criação de uma classe que herda coisas de "Animal"
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit");
+rabbit.run(5); // White Rabbit runs with speed 5.
+rabbit.hide(); // White Rabbit hides!
+##
+
+Entrentanto as coisas não são tão simples. Repare que essa classe "Rabbit" não possue um constructor. E se possuisse ? Bom, ocorreria um conflito do "this".
+Basicamente você precisa saber de 3 coisas: 
+1. quando você criar cria uma classe sem constructor, ele existe, mas está vazia.
+2. a classe que herdou coisas sempre vai dar prioridade a seus proprios elementos, só depois usando os herdados(caso tenham o mesmo nome)
+3. Para que "o que herdou" se refira a seu ancestral utiliza-se o method super()
+---> Dessa forma, se a classe ancestral e a descendente possuem o mesmo nome em suas properties, você que usar a do ancestral, e fazer usando o "super(prop)";
+##Ex:
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+}
+
+class Rabbit extends Animal {
+  constructor(name, earLength) {
+    super(name); //vai usar o constructor ancestral para criar o nome
+    this.earLength = earLength; // property especifica dessa classe
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit", 10);
+alert(rabbit.name); // White Rabbit
+alert(rabbit.earLength); // 10
+##
+
+➽ Private/protected properties and methods
+É algo fundamental quando você está criando coisas complexas/ que usam ou se comunicam, protengendo elas de serem alteradas.
+Uma analogia seria com uma cafeteira. Ela é um objeto complexo, tranforma a corrente alternada em corrente contínua e depois tranforma em calor e etc.
+Entretanto, para o usuário isso não importa, o que importa é que ele coloca água em um lugar, pó em outro e então aperta um botão. 
+Esse é o tipo de proteção/abstração.
+
+Internal interface – methods and properties, accessible from other methods of the class, but not from the outside.
+External interface – methods and properties, accessible also from outside the class.
+
+Para fazer essa proteção não existe um method ou função especifica. Basicamente você tem que usar seu conhecimento para tal.
+Usar condicionais para controlar o valor de algo, usar um get e não usar um set para tornar a property read-only. Etc;
+Na realidade, não há necessidade de usar set/get, desde que você tenha um controle maior no momento de criar a função.
+OBS: é uma convenção usar "_" no nome de properties protegidas;
+##Ex:
+class CoffeeMachine {
+	//criando property "universal"/padrão.
+  _waterAmount = 0;
+	
+  //fazendo o controle de qualidade de uma property com o "set" e condicionais
+  set waterAmount(value) {
+    if (value < 0) {
+      value = 0;
+    }
+    this._waterAmount = value;
+  }
+	
+  //faz o output da quantidade de agua. Repare que tem o mesmo nome que o "setter"
+  get waterAmount() {
+    return this._waterAmount;
+  }
+
+  constructor(power) {
+    this._power = power;
+  }
+  get power(){
+  	return this._power;
+  }
+
+}
+
+// create the coffee machine
+let cafeteira = new CoffeeMachine(100);
+
+
+cafeteira.waterAmount = -10;
+alert(cafeteira.waterAmount)
+cafeteira.waterAmount = 23; 
+alert(cafeteira.waterAmount)
+alert(cafeteira.power);
+cafeteira.power = 200;
+alert(cafeteira.power);
+##
+
+➽ OBS:
+------> instanceof
+É um operador(não é um method) que nos permite checar se uma variável pertence a uma classe
+##Ex:
+let arr = [1, 2, 3];
+alert( arr instanceof Array ); // true porque "arr" é da built-in class "Array"
+alert( arr instanceof Object ); // true porque "arr" é da built-in class "Array" que é da built-in class "Object"
+##
+
+------> Mixins
+Em JS objetos só podem herdar coisas de um único objeto. minixs são como catalogadores de utilidades que são usados para dar mais funicionalidades a objetos que já tem propotype.
+Basicamente, quando "objNovo" herda de "objVelho" ele troca coloca seu prototype como sendo o mesmo de "objVelho".
+Se nos queremos que "objNovo" tenha outras funcionalidades externas/importadas podemos usar mixins:
+##Ex:
+// criando um mixin
+let coisasUteis = {
+  sayHi() {
+    alert(`Hello ${this.name}`);
+  },
+  sayBye() {
+    alert(`Bye ${this.name}`);
+  }
+};
+
+//Classe ancestral
+class Person{
+	constructor(name){
+  	this.name = name;
+  }
+	miracle(){
+  alert("A b a c a t e")
+  }
+}
+// classe descendente:
+class User extends Person{
+  perceive(){
+  super.miracle();
+  }
+  constructor(name){
+  	super(name);
+  }
+}
+//estamos "colando" diretamente ao prototype de "User" um conjunto de código
+Object.assign(User.prototype, coisasUteis);
+
+//Agora um objeto da classe User pode fazer uso das "coisasUteis" mesmo já tendo herado algo. 
+new User("zezin").sayHi();
+new User("whatever").miracle();
+##
+
+
+⚪ Error handling ⚪
+É impossivel fazer codigo sem erro. O intuito de cuidar dos erros e passar um auxilio personalizado ao usuário e impedir que todo o script morra.
+Como já dito, se um erro ocorre Todo o script/codigo para. Isso é ruim. Nós queremos fazer com que o código continue apesar dos erros. Para isso podemos utilizar o "try...catch"
+
+➽ try...catch: 
+É uma especie de condicional que funciona sincronamente, para cuidar de erros.
+##syntax
+try {
+  //code to run
+  alert('Start of try runs');
+  alert('End of try runs');
+
+} catch (err) {
+  //error handling
+  alert('This "Catch" is ignored, because there are no errors');
+}
+##
+O argumento "err" pode ter qualquer nome. Ele na realidade representa um objeto que vai possuir informações sobre o erro.
+Existem alguns methods que podemos usar nesse objeto:
+- err.name; // Error name
+- err.message; // Textual message about error details.
+
+Nós também podemos criar pontos de verificação e se o código não passar neles podemos "jogar" um erro usando throw. Normalmente você também precisa criar um error objet ao usar o "Error", "SyntaxError" ou etc
+##Ex:
+let json = '{ "age": 30 }';
+try{
+  let user = JSON.parse(json);
+  if(!user.name){
+  throw new SyntaxError("Dados incompletos. Nome não disponível");
+  }
+  alert("user.name); //só vai ser executado se o throw não ocorrer. Ele é como se fosse um return.
+} catch(err){
+  alert("O seguinte erro ocorreu: " + err.message);
+}
+##
+➽ finally:
+Assim como em python, também existe a keyword "finally". Ela vai ser executada tamnto depois do try quanto depois do catch.
+OBS: Existe um built-in error object chamado de "Error"
+OBS: Como erros são objetos com informações, você pode criar e estender respostas para certos tipos de erro. Tendo cuidado quando for usar a property "name", não esquecendo de usar o "super()".
+
+
+⚪ Promises, async/await ⚪
+
+➽➽➽ Callbacks:
+No mundo real as coisas não ocorrem imediatamente. Por exemplo, se seu computador é lento e você quer fehcar o google e abrir um jogo, o jogo não vai esperar o google fechar para poder abrir.
+Podemos dizer que a atividade de fechar o google não ocorre imediatamente, e o jogo não espera ela acontecer.
+Vamos trazer isso para o javaScript:
+##Ex com o carregamento de scripts.
+//função que vai criar um tag <script> no html, dado o path até a .js file
+function loadScript(src){
+  let script = document.createElement('script');
+  script.src = src; //src é uma property do elemento script, que é representado pela variável script
+  document.head.append(script);
+  //inicando o carregamento do script com esse path
+  loadScript('/my/script.js');
+  //dentro desse script existe uma função chamada  de func123();
+  func123(); //gera uma erro, pois o carregamento não ocorre automaticamente
+}
+##
+Para executar a função desse script no exato momento em que ele carregar precisamos de um callback, uma afirmação que diz: "pronto, já pode rodar".
+Para criar/gerar uma calback você precisa:
+  1. Na função que precisa do callback(loadScript) adicinar outro parâmetro, que será o callback
+  2. usar o ".onload" method para rodar o calback, usando a keyword "callback()"
+  3. Quando chamar a função, detalhar como a callbakc funcionará:
+##Ex:
+//modificando a função para que ela possa usar um callback
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.onload = () => callback(script);
+  //quando o script carregar, você vai rodar a função chamada de callback e passar esse próprio script como argumento
+  script.onerror = () => callback(new Error("Ocorreu um erro durante o carregamento do script"));
+  document.head.append(script);
+}
+//Criando manualmente a callback dessa função. Quando o script carregar essa função vai rodar.
+function callback(script){
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ ); // function declared in the loaded script
+}
+
+loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', callback);
+##
+Normalmente você não precisa criar uma função separada chamada callback. Normalemente ela é uma arrow function anonima.
+
+A ideia de callback é: eu vou executar isso necessáriamente depois disso. Em uma espécie de ordem/cadeia.
+OBS: só deixando claro, callback Não é uma keyword, você pode trocar o nome callback por qualquer outra coisa.
+
+Entretando existe um problema com esse código, ele não tem controle sobre erros. Veja uma maneira mais consisa e "correta":
+##
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  //A função callback vai ter dois parametros agora. O primeiro é um erro e o segundo o script 
+  //Se o script conseguir carregar, o primeiro argumento é nulo e tudo ocorre naturalmente
+  script.onload = () => callback(null, script);
+  //se o ocorrer erro, só vamos passar o primeir argumento, e ele vai ser um erro.
+  script.onerror = () => callback(new Error());
+  document.head.append(script);
+}
+// aqui passamos a função callback como uma arrow anonymous function.
+//repare que passamos dois argumentos (o erro, o script).
+loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', (error, script) => {
+  if(error){
+    alert("Deu pepino");
+  }else{
+    alert(`Cool, the script ${script.src} is loaded`);
+    alert( _ ); // function declared in the loaded script
+  }
+});
+##
+
+➽➽➽ Promises: 
+Imagine que você é um cantor e seus fãs enchem seu saco por música novas. Daí você promete pra eles que você vai mandar assim que estiver pronto, mas eles precisam assinar uma ata ou coisa do tipo.
+Essa analogia reflete o seguinte conceito:
+o cantor -> “producing code” == vai fazer algo que demora (asincrono)
+os fãs -> consuming code” == vão pegar o resultado do  “producing code” e fazer alguma coisa
+a ata -> é a "Promise" que liga os dois códigos
+
+Promises são objetos built-in do JS e noramlemente tem essa estrutura:
+##
+let promise = new Promise(function(resolve, reject) {
+  // colocamos nosso código aqui (“producing code”)
+});
+##
+resolve e reject são callbacks (funções) criados pelo JS.
+resolve(value) — se o código roda normalmente, vai retornar o "value"
+reject(error) — se algum erro ocorre, "error" is the error object
+
+Quando você cria uma "promise" usando new Promise, você tem "estados" e "resultados"
+inicialmente o "state" é pendente -> se tudo ocorre bem: "fulfilled" -> se não: "rejected"
+inicialmente o "result" é undefined -> se tudo ocorre bem passa a ser o value de resolve(value)  -> se não, é o erro de reject(error).
+OBS: só pode existir um "resolve" ou um "reject" mas você pode escrever os dois sem problemas, desde que você faça uma condional.
+##Ex:
+let promise = new Promise(function(resolve, reject) {
+  // O código abaixo começa a executar automaticamente quando a promise é declarada/construida
+  //code:
+  setTimeout(() => resolve(alert("done")), 1000);
+##
+
+---> methods de propagação:
+Você já tem a ata, e já produziu a musica, agora você só precisa enviar ela para os fãs, mas como?
+Usando um dos methods: .then, .catch, .finally
+O ".then" é o mais usado/universal. Você usa da seguinte forma:
+##
+promise.then(
+  function(result) {},
+  function(error) {}
+);
+//a primeira função vai ser executada se a promessa retornar um valor (for resolvida)
+//a primeira função vai ser executada se a promessa retornar um erro (for rejeitada)
+##
+
+.catch(f) == .then(null, f)
+
+.finally serve para o mesmo propósito que em try {...} catch {...}
+
+##Ex:
+alert("inicio do código");
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("result"), 2000)
+})
+  promise.finally(() => alert("Promise ready"))
+  promise.then(result => alert(result)); // <-- .then handles the result
+##
+
+Vamos usar promises para reescrever o exemplo do carregamento de scripts, que usavam callbacks.
+##
+function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+	
+    //basicamente, podemos escrever as duas. Mas devemos fazer uma espécie de condicional 
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+    document.head.append(script);
+  });
+}
+
+let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+
+promise.then(
+  script => alert("O script foi carregado"),
+  error => alert(`O seguinte erro aconteceu: ${error.message}`)
+);
+promise.finally(() => alert('finalização do processo'));
+##
+
+
+➽➽➽ promise chaining:
+Se você tem uma sequencia de processos assíncronos e quer interligar eles, com promises você faz isso de maneira simples. Basta chamar o ".then" dessa promessa.
+##Ex:
+new Promise(function(resolve, reject) {
+  setTimeout(() => resolve(1), 1000); // promessa inicial
+}).then(function(result) { //segunda promessa
+  alert(result); // 1
+  return result * 2;
+
+}).then(function(result) { //terceira promessa
+  alert(result); // 2
+  return result * 2;
+}).then(function(result) { //quarta promessa
+  alert(result); // 4
+  return result * 2;
+});
+##
+repare que não existe "espaços" entre os .then. Eles estão: .then().then().then().then().then()
+
+----> fetch example:
+Normalmente promises são usadas em network requests e você pode trabalhar com elas de diversas maneiras. Vamos ver um modo "vanilla" de lidar com o http request "fetch".
+let promise = fetch(url); vai fazer uma request dada uma url e vai resolver(retornar) uma resposta incompleta (uma confirmação de conexão) e depois uma completa (com os dados)
+Para que você possa usar o conteúdoimediatamente após ele ser carregar você deve usar: .then(//alguma função)
+##Ex:
+//criando um user
+let user = {
+	name: "dFLPp"
+}
+//fazendo uma request ao github
+  fetch(`https://api.github.com/users/${user.name}`)
+  // carregando a respose em .json
+  .then(response => response.json())
+  .catch(err => alert(err)) //opcional mas importante. Error handling
+  // mostrando a imagem do perfil do user no github por 3s
+  .then(githubUser => {
+    let img = document.createElement('img');
+    img.src = githubUser.avatar_url;
+    document.body.append(img);
+
+    setTimeout(() => img.remove(), 3000);
+  });
+##
+
+Ou seja, apartir de função/chamada assíncrona (o fetch) precisamos usar .then para executar código imediatamente após ele (nem antes nem muito depois).
+2 OBS:
+1. Esse código é totalmente funcional mas é preferível separar ele em funções. De modo que as funcionalidades possam ser reusadas
+2. O error handling é feito ao usar o .catch. O ".catch" pode ser usado para cuidar de qualquer tipo de erro quando em promises.
+
+-> Basicamente você criar um novo objeto/promise e para criar atividades imediatamente após elas você usa o ".then" e coloca o ".catch" nos lugares onde você quer tratar os erros.
+-> Nós podemos finalizar/encerrar uma promessa ao resolver o problema e retornar um valor com resolve(value) ou tratar algum erro, caso ocorra, com reject(error)
+-> Além disso, repare que poderiamos tentar fazer esse código anterior usando callbacks, mas as promisses são tão superiores que nem valhe a pena.
+
+Existem ainda 6 methods que podem ser usados em promises. Só vou citar o "Promise.all". Ele serve para esperar um conjunto de processos assíncronos terminarem para só então dar a resposta.
+##Ex:
+//urls que podem ser acessadas pela função fetch
+let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://api.github.com/users/jeresig'
+];
+
+// vai iterar sobre uma lista usando o .map.
+// É super recomendado entender como usar o .map();
+let requests = urls.map(url => fetch(url));
+
+// Promise.all vai esperar todas as promisses se completarem
+Promise.all(requests)
+.then(responses => responses.forEach(
+  response => alert(`${response.url}: ${response.status}`)
+));
+//essa ultima parte ficou confusa, porém basta você saber que "responses" é um nome qualquer. Ela só representa o resultado da promessa inicial.
+##
+
+-------> OBS: “Promisification” é conversão (através de uma função) de uma função que aceita callbacks em uma função que retornar promises.
+
+
+➽➽➽  Async/await:
+É um modo mais simples de se escrever promessas.
+Usa-se a keyword "async" na frente de uma função para dizer que ela Sempre retorna uma promessa. No exemplo a seguir percebe-se que a função passa a ser assíncrona
+##
+async function f() {
+  return 1;
+}
+f().then(alert); // 1
+alert("abacate")
+##
+Usar async é mais simples/menos confuso pois, como todas as funções declaradas com async retornam necessáriamente uma promessa, podemos usar "return 1" ao invés de return Promise.resolve(1);
+Existe ainda a keyword "await". Ela só pode ser usada dentro de funções que são "async" e ela faz o javaScript pausar a execução de algo até que a promessa returne algo.
+Não é obrigatorio, mas na maioria das vezes, você deve usar: "let a = await ..." ao invés de usar "await ..." diretamente.
+##Ex:
+async function f() {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+  let result = await promise; // a execução da função Para aqui e só volta quando a promise retornar algo.
+  alert(result); // "done!"
+}
+f();
+##
+O await pode ser comparado ao .then. Eles tem o mesmo proprósito/utilidade.
+
+Usando async/await vamos tentar reconstruir aquele exemplo de mostrar o icone do github de um user.
+##
+let user = {
+name: "dFLPp"
+}
+
+async function showAvatar(name) {
+  //faz a request
+  let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);
+  //"traduz" a request em json usável pelo código
+  let githubUser = await githubResponse.json();
+
+  //mostra o ícone no html
+  let img = document.createElement('img');
+  img.src = githubUser.avatar_url;
+  img.className = "promise-avatar-example";
+  document.body.append(img);
+
+  //espera 3s para apagar o icone
+  await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+  img.remove();
+  return githubUser;
+}
+
+showAvatar(user.name);
+##
+
+-------> Error handling:
+Quanto estamos trabalhando com async/await nós estamos dentro de funções, então é mais prático e fácil usar o try..catch ao invés de usar o .catch (como acontecia em promises). 
+##Ex:
+async function f() {
+  try {
+    let response = await fetch('/no-user-here');
+    let user = await response.json();
+  } catch(err) {
+    // catches errors both in fetch and response.json
+    alert(err);
+  }
+}
+
+f();
+##
+
+➽➽➽ Recapitulação:
+
+Vimos 3 formas de interação com eventos/processos assíncronos e demos alguns exemplos, e entre eles como usar o fetch() method para pegar informações através de urls
+1. Os primeiros foram as callbacks. Callbacks se referem a funções que devem ser executadas imetiadatamente após as outras. Para isso você passa uma função como argumento da outra.
+Para tratar erros com callbacks podemos usar tanto o try..catch quanto usar built-in methods como: "onload" ou "onerror"
+
+2.Depois analizamos a fundo promises. Como promises nós podemos trabalhas com eventos assíncronos em cadeia de maneira mais simples. Para criar uma promise você deve usar o criar um objeto através built-in method Promise().
+	let promessa = Promise(function(resolve, reject) {
+	  // colocamos nosso código aqui
+	});
+Dessa forma, quando o código terminar de rodar ele retorna um valor com o method "resolve()" ou retorna um erro com o "reject()". Ainda é possível "concatenar" divesar promessas com o ".then()" e faz o controle de erro ao usar o ".catch(alert)"
+
+3. E por fim vimos a maneira mais moderna/recomenda de se trabalhar com eventos assíncronos, que é com async/await. Quando você usa a keyword "async" para criar uma função, ela sempre retornará uma promise, dessa forma você pode usar .then e os conceitos vistos em promises. Porém você também pode usar a keyword await, ela tem o mesmo propósito que o .then e vai pausar o código para esperar a promise retornar algo.   
+PAra tratar erros aqui podemos voltar a usar try..catch, ou continuar a usar .catch. Eu, partircularmente, achei o conceito de promises e os methods usados mais lógicos/compreensíveis. Acho que usar .then() ainda é mais facil que usar "await", entretando é a prática que faz o programador então... 
+
+
+⚪ Generators ⚪
+
+generators ou generator functions são funções especiais que podem retornar(yield) vários valores, um depois do outro (em sequencia), diferentemente das funções normais que só retornam um valor.
+Para você criar uma generator function você usa a keyword "function*", com um asterísco no final. O resultado dessa função é um objeto especial chamadado de generator object.
+O princípal method de um generator é o "next()". Quando você chama ele, você executa a função até encontrar a keyword "yield", depois disso retorna um valor e pausa a função, contínando com o código.
+Quando você fizer o next() novamente, a execução vai voltar de onde paraou e vai até a achar ou "yield";
+yield não é um substituto do return. O yield serve para "fragmentar" a função de modo que ela execute em momentos específicos e retorne valores diferentes.
+#Ex:
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+let generator = generateSequence();
+//até aqui, a função não é executada, pois nenhum next() foi usado
+
+let one = generator.next();
+alert(JSON.stringify(one));
+//acima nos executamos a fução pela primeira vez. Mas ela não vai executar completamente, só uma parte
+//aqui podemos fazer uso desse "resultado parcial" da função
+
+//Tudo bem, agora queremos o resultado de outra parte da função. Para isso:
+let two = generator.next();
+alert(JSON.stringify(two)); // {value: 2, done: false}
+
+//E se quisermos continuar com a próxima (e ultima) parte:
+let three = generator.next();
+alert(JSON.stringify(three)); // {value: 3, done: true}
+##
+
+Nesse ultimo alert você perceberá que a property done passou a ser true. Isso acontece porque o "return" existe.
+O JS só sabe que um generator acabou se você usar a keyword return.
+
+Generators são iteráveis, podendo usar todos os methods que já foram citados sobre iterators.
+
+Normalmente generators são usados para criar funções, objetos, e códigos que não são iteráveis em coisas iteráveis. Você consegue faz isso ao usar o built-in method *[Symbol.iterator]() {}
+#Ex:
+let range = {
+  from: 1,
+  to: 5,
+
+  *[Symbol.iterator]() { // a shorthand for [Symbol.iterator]: function*()
+    for(let value = this.from; value <= this.to; value++) {
+      yield value;
+    }
+  }
+};
+
+alert( [...range] ); // 1,2,3,4,5
+##
+
+
+➽➽➽ Async iteration and generators:
+O nome é bem auto-explicativo, é o ato de realizar iterações assincronamente.
+Um exemplo básico seria: Quando o usuário decidir fazer uma compra você pode fazer ele passar uma bateria de informações para validação.
+Isso é a assíncrono porque a compra só pode acontecer depois que o user colocar os dados
+Isso é um iterator por que dado uma sequencia de perguntas, estamos iterando sobre elas e recebendo respostas.
+
+Veja uma comparação:
+					Iterators		Async iterators
+Object method to provide iterator	Symbol.iterator		symbol.asyncIterator
+next() return value is			any value		Promise
+to loop, use				for..of			for await..of
+Declaration				function*	async function*
+
+
+⚪ Modules ⚪
+Modules são arquivos que podem ser importados ou importandos, permitindo usar códigos em outros arquivos sem ter que entende-los ou reescreve-los
+Ex: eu tenho dois arquivos no mesmo diretório: sayHi.js e main.js. Se eu quiser usar uma função, ou uma variável, generators ou etc, eu preciso exportar ela (export)
+Já em "main.js" eu quero usar algo não nativo, então eu preciso importar (import)
+##Ex:
+// 📁 sayHi.js
+export function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+// 📁 main.js
+import {sayHi} from './sayHi.js';
+sayHi('John'); // Hello, John!
+##
+
+Modules funionam somente com HTTP(S). Ou seja, você precisa emular um servidor para que você possa usar modules. Emular/gerar um dev server é algo comum/recorrente em web dev moderna. Existem extensões no VS code e tutoriais simples que indicam o "como criar".
+
+Para que você possa integrar scripts no se HTML você deve usar type="module" na tag <script> aleḿ disso, se você quer importar um module externo (site ou etc) você usar o "src"
+##Ex:
+<script type="module" src="http://another-site.com/their.js"></script>
+##
+
+Existem alguns outros tópicos:
+-> "import *" vai importar todas as coisas que foram exportadas no arquivo alvo
+-> tanto no export quanto no import você pode utilizar "as" para se referir a uma função ou coisa específico.
+-> import deve estar no "top level" (não pode estar funções, condicionais, blocos de código no geral)
+##Ex:
+// 📁 say.js
+export function sayHi() { ... }
+export function sayBye() { ... }
+export function becomeSilent() { ... }
+
+// 📁 main.js
+import * as say from './say.js';
+
+say.sayHi('John');
+say.sayBye('John');
+##
+
+OBS: você pode usar "export default abacate(){//code}" para exportar essa função como padrão desse arquivo, dessa forma você pode se referir a ela como default ao invés do nome.
+➽ Build tools:
+Em projetos reais, normalmente não se utilizam modules na sua versão "Pura", uma ferramenta chamada de bundler vai organizar e otimizar os modules de modo que não ocorram erros e que o app/site não fique pessado.
+Por exemplo, supondo que nós utilizamos a bundler "Webpack", ao invés de fazer vários imports no html ou em outro .js, Nos podemos fazes esses vários imports no arquivo especial do Webpack e ele então vai otimizar o código.
+Dessa forma ao invés de fazer 5 imports no meu html, eu faço somente 1 (que é o arquivo especial fornecido pelo bundler)
+
+➽ Dynamic imports
+Tem sentido literal. O intúito é fazer o import de modules ou files de maneira "ao vivo" (on-demand), sendo necessário usar o method "import()".
+Na maioria das vezes, se você quer carregar um import em um momento específico, é poque você está usando async. Veja o exemplo que combina os dois conceitos:
+##Ex:
+// 📁 say.js
+export function hi() {
+  alert(`Hello`);
+}
+export function bye() {
+  alert(`Bye`);
+}
+export default function() {
+  alert("Module loaded (export default)!");
+}
+
+// 📁 index.html
+<!doctype html>
+<script>
+  async function load() {		// só se pode usar await em função async
+    let say = await import('./say.js'); // você faz await no "import()"; 
+    say.hi(); // Hello!
+    say.bye(); // Bye!
+    say.default(); // Module loaded (export default)!
+  }
+</script>
+<button onclick="load()">Click me</button>
+##
+
+⚪ Miscellaneous ⚪
+
+➽ Proxy:
+O method Proxy atua como um wrapper de um objeto, que intercepta operações como ler/escrever dados (é uma camada de segurança)
+Syntax: "let proxy = new Proxy(target, handler)" onde "target" é o objeto a ser "protegido" e "handler" é um method com armadilhas/mecanismos de seguraça.
+Dentro do handler você usa outros methods como get(para ler dados) e set(para escrever dados)
+##Ex:
+let numbers = [0, 1, 2];
+
+numbers = new Proxy(numbers, {
+  get(target, prop) {
+    if (prop in target) {
+    //OBS: prop se refere automaticamente aos elementos do objeto
+      return target[prop];
+    } else {
+      return 0; // default value
+    }
+  }
+});
+
+alert( numbers[1] ); //Se o valor existe dentro do objeto, você o mostra
+alert( numbers[123] ); //Nesse caso ele retorna 0
+##
+
+## Ex mais complexo:
+let user = {
+  name: "John",
+  _password: "***"
+};
+
+user = new Proxy(user, {
+  get(target, prop) {
+    if (prop.startsWith('_')) {
+      throw new Error("Access denied");
+    }
+    let value = target[prop];
+    return (typeof value === 'function') ? value.bind(target) : value; // (*)
+  },
+  set(target, prop, val) { // to intercept property writing
+    if (prop.startsWith('_')) {
+      throw new Error("Access denied");
+    } else {
+      target[prop] = val;
+      return true;
+    }
+  },
+  deleteProperty(target, prop) { // to intercept property deletion
+    if (prop.startsWith('_')) {
+      throw new Error("Access denied");
+    } else {
+      delete target[prop];
+      return true;
+    }
+  },
+  ownKeys(target) { // to intercept property list
+    return Object.keys(target).filter(key => !key.startsWith('_'));
+  }
+});
+
+// "get" doesn't allow to read _password
+try {
+  alert(user._password); // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// "set" doesn't allow to write _password
+try {
+  user._password = "test"; // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// "deleteProperty" doesn't allow to delete _password
+try {
+  delete user._password; // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// "ownKeys" filters out _password
+for(let key in user) alert(key); // name
+
+##
+
+
+⚪⚪⚪ Browser: Document, Events, Interfaces ⚪⚪⚪
+
+No início, JS não era uma linguagem de programação(era uma linguagem de script, focada para web) mas com o passar do tempo se tornou uma, de modo que pode ser utilizada em outros ambientes (como em servers, através do node.js), também chamados de host environments.
+
+Em toda a seção anterior cobrimos a linguagem javaScript de modo que esse conhecimento possa ser usado em qualquer tipo de "environment"
+Nessa parte, vamos focar especificamente no JS que se relaciona com o browser (1 environment específico).
+
+⚪ DOM & Document ⚪
+Uma página/site na internet é uma composição de várias partes. O que você vê na verdade é um objeto criado pelo browser chamado de "window".
+Esse objeto "window" é formado por 3 partes: JavaScript (que vc escreve), DOM e BOM.
+BOM = Browser Object Model. É uma parte específica do browser/marca (chorme, firefox, etc)
+DOM = Document Object Model. É um sistema de representação universal que transforma todo o conteúdo de um site em objetos que podem ser alterados.
+
+O DOM cria um objeto global/central chamado de "document" e apartir dele podemos acessar os objetos da página (divs, body, paragráfos, etc). DOM não é esclusivo de browsers, mas é onde tem maior utilidade.
+Para o DOM, todas as tags do html são obejtos que podem ser alterados (via javaScript). Por exemplo, o objeto "document.body" representa a tag <body>
+
+O DOM funcinona em uma espécie de "tree" onde uma coisa se "divide"/relaciona com outras em uma sequência. O que você precisa saber é:
+"document" representa todo o documento. 
+"document.codumentElement" representa o <html>
+"document.body" representa o <body>
+e apartir do body, existem diferentes referencias para diferentes tags, mas para todas existem:
+"parentNode" é a tag/elemento que contém outro elemento. Ex: <ul>
+"childNodes" são todas as tags/elementos que está dentro de um elemento. Ex: <li>
+"firstChild" é o primeiro elemento que está dentro de outro elemento
+"lastChild" é o ultimo elemento que está dentro de outro elemento
+"previousSibling" é o elemento que está no mesmo nível mas veio antes (em ordem)
+"nextSibling" é o elemento que está no mesmo nível mas vem depois (em ordem)
+OBS: todos os termos acima são methods que podem ser usados no JS
+
+Existem, entretanto, formas melhores para se referenciar um elemento/objeto do html, que é usar o "getElement" e o "querySelector".
+Esses dois methods são modificáveis e servem para ligar as tags do html ao JS como se eles fossem objetos (esse é o intuito do DOM)
+Algumas variações e modificações:
+
+querySelector: Usa CSS-selectors para se referir ao primeiro elemento que possue esses selectors
+querySelectorAll: Usa CSS-selectors para se referir a todos os elementos que possuem esses selectors
+getElementById: se refere a um elemento dado o seu id
+getElementsByClassName: Se refere a todos os elementos de uma classe especificada.
+OBS: Em todos você deve passar como parâmetro uma string.
+OBS: Exemplo de css-selector: "ul > li:last-child". Se refere somente aos ultimos li's das ul's
+
+➽ Node properties
+Não se assuste/precipite, "node" simplismente significa "conjunto". No contexto do DOM, um "node" é um objeto.
+Ou seja, "document.body" é um "node" do DOM e, ao mesmo tempo, é um element do html (body).
+Principais propriedades:
+Para usar elas normalmente você cria um .html e então dele cria um <script>, dentro dele você faz o código.
+	- nodeType: mostra o tipo do node. 1 === 'element', 3 === 'text' entre outros resultados possíveis
+	- nodeName: serve para non-elements && tagName: serve para elements
+	- innerHTML: serve para alterar o Conteúdo de um elemento do html
+		Ex: document.body.innerHTML = 'Abacate';
+	- textContent: altera o Texto de um element.
+		##Ex esclarecedor: 
+			<div id="elem1"></div>
+			<div id="elem2"></div>
+			<script>
+			  let name = prompt("What's your name?", "<b>Winnie-the-Pooh!</b>");
+			  elem1.innerHTML = name;
+			  elem2.textContent = name;
+			</script>
+		##
+	- classList: é usado para adicionar ou remover classes de um elemento do html. Ex: elem.classList.add/remove("class") vai adicionar ou remover a classe "class" ao elemento "elem" do html
+	
+	- attributes: são aquelas keywords que você coloca no html. Você pode adicionar e alterar elas dinâmicamente com JS.
+	- elem.getAttribute(name): pega o atributo "name" do elemento "elem" do html e transporta para o JS
+	- elem.setAttribute(name, value): adiciona o atribute "name" com valor "value". O resultado seria: <div id="elem" name="value></div>
+
+	- document.createElement(tag): Cria elementos no html. Pode ser usado em loops, condicionais, etc. Ex: let divObj = document.createElement('div');
+	Entretanto é depois de criar esse elemento é necessário inserir ele no html, e isso é feito com .append. Ex: document.body.append(divObj);
+
+##Ex:
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+    .welcome {
+    position: fixed;
+    z-index: 1000;
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 20px;
+    background: white;
+    text-align: center;
+  }
+  </style>
+</head>
+
+<body>
+  <h2>Notification is on the right</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro
+  </p>
+
+  <script>
+    function showNotification({top = 0, right = 0, className, html}) {
+      let notification = document.createElement('div');
+      if (className) {
+        notification.classList.add(className);
+      }
+      notification.style.top = top + 'px';
+      notification.style.right = right + 'px';
+      notification.innerHTML = html;
+      document.body.append(notification);
+      setTimeout(() => notification.remove(), 1500);
+    }
+
+    // test it
+    let i = 1;
+    setInterval(() => {
+      showNotification({
+        top: 10,
+        right: 10,
+        html: 'Hello ' + i++,
+        className: "welcome"
+      });
+    }, 2000);
+  </script>
+
+
+</body>
+</html>
+##
+
+⚪ Events ⚪
+
+Eventos são eventos. Ao trabalhar com eventos no JS, você pode alterar dinamicamente a pagina, respondendo a um acontecimento.  
+Existem diversas categorias de eventos. Os principais são:
+click – quando você clica em uma elemento com botão esquerdo
+contextmenu – quando você clica em uma elemento com botão direito
+mouseover / mouseout – quando o cursor passa por cima ou sai do elemento.
+keydown and keyup –quabdo uma tecla é pressioada ou solta.
+submit – quando você envia um <form> ao usar um <input type="submit">.
+DOMContentLoaded – when the HTML is loaded and processed, DOM is fully built.
+Event object - fornece informações detalhadas sobre eventos como seu tipo (event.type) seu alvo/trigger event.currentTarget e as suas coordenadas
+
+Existe agora 3 formas de criar Respostas ao evento:
+HTML attribute (você coloca dentro da tag do HTML): onclick="...".
+DOM property (você coloca dentro do js): elem.onclick = function.
+Methods (você coloca dentro do js): elem.addEventListener(event, handler[, phase]) to add, removeEventListener to remove.
+É recomendado usar o EventListener ao invés de onclick ou onchage ou etc.
+
+➽ preventDefault():
+Ele empede que um evento ocorra quando você clica nele.
+##Ex:
+Try to check this box: <input type="checkbox" id="myCheckbox">
+<p>Toggling a checkbox is the default action of clicking on a checkbox. The preventDefault() method prevents this from happening.</p>
+<script>
+document.getElementById("myCheckbox").addEventListener("click", function(event){
+  event.preventDefault()
+});
+</script>
+##
+
+➽ Bubbling and capturing
+
+capturing: é o processo onde o DOM passa/"desce" na DOM tree, element por element até chegar no elemento que foi clicado, também chamado de target.
+
+Bubbling: Quando um evento ocorre em um elemento, ele primeiro é executado nesse elemento, depois em seu "parent" e depois em todos os outros ancestors. Quase todos os eventos "bubble"
+Ao usar "event.target" podemos descobrir qual o elemento que está sendo clicado
+
+Dessa forma podemos dizer que DOM events são constituidos de 3 fases:
+1. Capturing phase – the event goes down to the element.
+2. Target phase – the event reached the target element.
+3. Bubbling phase – the event bubbles up from the element.
+
+Ex: Uma boa sugestão de como fazer uma galeria de imagens é usar ul/li e usar translate's. Basicamente o <ul> vai ser um sub-container da galeria e cada li vai ser uma imagem, além disso você coloca as imagens como in-line block.
+Além disso o tamanho da galeria é fixo, de modo que que você faz o translate nas imagens. Percebe entretando que você tem que controlar quanto pode-se deslocar a sequencia de imagens.
+O código pode ser encontrado em: https://javascript.info/introduction-browser-events#carousel
+
+➽ Event delegation:
+Podemos usar o event object e outros methods como ".dataset", ".action" para que, com um único handler nos possamos tratar e realizar várias respostas à diferentes eventos.
+Ex: Supondo 3 buttons, se você quer ter que um evento diferente ocorra dependendo do botão, usando apenas um handler, você deve olhar a natureza/ tipo do event object e então trabalahar com condicionais.
+##Ex:
+	<div id="menu">
+	  <button data-action="save">Save</button>
+	  <button data-action="load">Load</button>
+	  <button data-action="search">Search</button>
+	</div>
+	<script>
+	  class Menu {
+	    constructor(elem) {
+	      this._elem = elem;
+	      //é necessário fazer isso para que this não perca o contexto.
+	      elem.onclick = this.onClick.bind(this); //pesquise se necessário
+	    }
+	    save() {
+	      alert('saving');
+	    }
+	    load() {
+	      alert('loading');
+	    }
+	    search() {
+	      alert('searching');
+	    }
+	    //repare aqui o uso do event object
+	    onClick(event) {
+	      //estamos pegando/salvando o tipo/natureza do evento
+	      let action = event.target.dataset.action;
+	      //se o evento existir
+	      if (action) {
+	      	//execute a função/method existente no script que tenha o mesmo nome que o botão clicado
+		this[action]();
+	      }
+	    };
+	  }
+	  new Menu(menu);
+	</script>
+##
+OBS importante:
+O atributo "data-action" não existe, na realidade nos criamos ele. Talvez seja a primeira vez que você veja isso mas, isso não é um erro. Você só está simplismente criando um atributo novo. A grande sacada é que nomear as coisas com "data-<alguma coisa>" é um padrão recorrente. 
+Pelo fato desse padrão ser recorrente implementou-se uma função no JS onde você pode tratar a escrita "data-" como se fosee o method ".dataset", podendo usar ele para se referir ao elemento, afinal de contas ele é um atributo, e "action" (apos o traço) como ".action". 
+Sim é confuso, mas é vital e necessário compreender como atribuitos esse atributo não-oficial do html ganhou uma funcionalidade graças a sua repetição na utilização. Por exemplo, eu poderia transformar: "data-action" em "data-abacate" e o codigo funcionaria normalmente SE eu muda-se ".dataset.action" para ".dataset.abacate"
+
+Também é possivel criar eventos customizados e passar eles como primeiro argumento para os eventHandlers, além de ser possível previnir/alterar o comportamento dos eventos padrão do browser. Para mais informações, pesquise.
+
+
+➽ Pointer events 
+
+Pointer events são uma maneira moderna de trabalhar com inputs do tipo pointer (mouse, keybord, etc).
+Para cada mouse envent existe um pointer event. Por exemplo: "pointermove" é semelhante à mousemove.
+Alguns eventos importantes: 
+"pointermove" se refere ao quanto o mouse se mexeu em uma área.
+"pointerdown" é quando você clica em algo e segura
+"pointerup" é quando você solta o botão do clique.
+
+Também é importante usar setPointerCapture(). Ele serve para redirecionar todos os enventos que acontencem em um pointerId para um elemento DOM.
+A utilização básica é:  elem.setPointerCapture(pointerId).
+
+##Ex:
+thumb.onpointerdown = function(event) {
+  thumb.setPointerCapture(event.pointerId);
+  // ao usar isso, todos os diferentes eventos que acontecerem seram redirecionados ao elemento DOM "thumb" (até ocorrer "pointerup")
+  
+  thumb.onpointermove = function(event) {
+    //o que acontece quando você mexe no mouse.
+    //Repare que, como definimos onpointermove dentro de onpointerdown,
+    //ele se refere ao movimento que acontece enquanto o mouse está pressionado
+  };
+
+  // on pointer up finish tracking pointer moves
+  thumb.onpointerup = function(event) {
+    thumb.onpointermove = null;
+    thumb.onpointerup = null;
+    
+  };
+};
+
+##
+
+
+➽ keybord events:
+São os enventos que acontecem no teclado.
+Quando você aperta uma tecla e segura você está fazendo repetidos "keydown", quando você solta a tecla você faz um "keyup"
+Você pode tratar do conteudo da tecla com "event.key" e do código da tecla com "event.code", onde cada tecla tem um "event.code" específico
+Com isso você pode fechar/aterar a pagina quando uma tecla específica é apertada ou então delimitar o que pode ser escrito.
+##Ex:
+<script>
+function checkPhoneKey(key) {
+  return (key >= '0' && key <= '9') ||
+    ['+','(',')','-','ArrowLeft','ArrowRight','Delete','Backspace'].includes(key);
+}
+</script>
+<input onkeydown="return checkPhoneKey(event.key)" placeholder="Phone, please" type="tel">
+##
+Nesse exemplo, temos um input onde quando uma tecla for apertada/digitada, vamos checar a key dela. Se for algum caractere que não foi específicado, então você não terá permissão de escrever ele no input.
+
+➽ Scrolling:
+É uma maneira de expor o conteudo que não cabe na tela. Você pode previsir/esconder o scroll através de enventos, mas a forma mais fácil é usar "overflow: hidden;" no css.
+##Ex: up/down button
+seta.onclick = function() {
+      window.scrollTo(pageXOffset, 0);
+      //quando clicarmos no elemento/botão "seta" vamos para o topo da página (scroll = 0)
+    };
+
+    window.addEventListener('scroll', function() {
+      seta.hidden = (pageYOffset < document.documentElement.clientHeight);
+      //a seta vai ficar escondida enquando o user não deslizar o equivalente ao tamanho do monitor dele para baixo.
+      //Ou seja, a "seta" vai aparecer depois que um "monitor de altura" for "scrollado" para baixo.
+    });
+##
+
+➽ form events:
+quando você criar um <form> no HTML e dá um nome para ele, você pode acessar/se referir à ele no js como: "document.forms.nomeDoForm"
+##Ex:
+<form name="my">
+  <input name="one" value="1">
+  <input name="two" value="2">
+</form>
+
+<script>
+  // get the form
+  let form = document.forms.my; // <form name="my"> element
+
+  // get the element
+  let elem = form.elements.one; // <input name="one"> element
+
+  alert(elem.value); // 1
+</script>
+##
+Existem alguns handlers para eventos que envolvem forms/inputs:
+
+onchange: é ativado quando uma mudança é enviada/confirmada.
+##Ex:
+<input type="text" onchange="alert(this.value)">
+<input type="button" value="Button">
+##
+oninput: é ativado imediatamente quando ocorre uma mudança.
+##Ex:
+<input type="text" id="input"> oninput: <span id="result"></span>
+<script>
+  input.oninput = function() {
+    result.innerHTML = input.value;
+  };
+</script>
+##
+
+➽ page events:
+Uma pagina em html tem 3 estágios:
+DOMContentLoaded: a página carregou, porém alguns scripts ou imagens não.
+load: toda a página já carregou.
+beforeunload/unload: quando estamos saindo ou efetivamente saimos da pagina.
+
+onload:
+##Ex:
+<script>
+  window.onload = function() { // can also use window.addEventListener('load', (event) => {
+    alert('Page loaded');
+
+    // image is loaded at this time
+    alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+  };
+</script>
+
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+##
+
+➽ tempo de carregamento.
+No web dev atual, os arquivos .js são maiores que os arquivos .html, e por isso, quando usamos um <script>, a pagina fica lenta/só carrega o conteúdo depois que todo o script carregar e for baixado.
+É por isso que normalmente colocam-se os scripts no final do body, mas existem outras soluções/alternativas. Uma delas é usar a keyword "async" (não tem nada haver com async/await mas funciona de maneira semelhante).
+Rode os exemplos abaixo para ter uma comparação:
+##Ex 1:
+<p>...content before script...</p>
+<script src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
+<!-- This isn't visible until the script loads -->
+<p>...content after script...</p>
+##
+##Ex 2:
+<p>...content before scripts...</p>
+<script>
+  document.addEventListener('DOMContentLoaded', () => alert("DOM ready!"));
+</script>
+<script async src="https://javascript.info/article/script-async-defer/long.js"></script>
+<script async src="https://javascript.info/article/script-async-defer/small.js"></script>
+<p>...content after scripts...</p>
+##
+
+Ainda falando sobre carregamento, nos já conseguimos criar quase (se não todos) os elementos do html pelo DOM. Por exemplo, criar um <script> atribuir um src para ele e anexar à <head>. Mas e quanto executar ele? Como executar o script ou usar o script quando ele carrega? Para isso temos a função/evento: ".onload".
+##Ex:
+let script = document.createElement('script');
+
+// can load any script, from any domain
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
+document.head.append(script);
+
+script.onload = function() {
+  // the script creates a variable "_"
+  alert( _.VERSION ); // shows library version
+};
+##
+OBS: o código só vai rodar quando o script carregar, ou seja, somente uma vez, levando em conta o lifecycle da página.
+
+
+➽➽➽ Event loop:
+É o modus operandi do node.js e do js usado nos browsers.
+Basciamente consiste em um loop infinito onde: se existem "tasks"/requisições você vai executar o código, se não, você "hiberna"/espera(quase sem gasto de cpu). 
+Esse loop funciona como uma "stack", onde as tasks mais antigas/que chegaram primeiro são as que recebem mais atenção/tem mais prioridade.
+Por exemplo: quando um script é carregado, a task é executar ele; quando o mouse se mexe a task é calcular e comunicar os eventos/triggers/handlers correspondentes; etc.
+Se uma task é enviada para a engine (o coração do javaScript, seja no node, seja no browser) e ela está ocupada, ela cria uma "queue", uma especie de fila, também chamada de "macrotask queue"
+É impotante citar que, enquanto a engine está ocupada com tasks, ela não pode renderizar/executar nada realionado ao DOM.
+Existem ainda microtasks, que são tasks/gastos computacionais gerados "artificialmente" pelo nosso código, como usar um .then, .catch ou .finally.
+
+O comportamento padrão é o seguinte: Imediatamente depois de rodar todas as macrotasks, a engine vai chegar se existe e se existir vai rodar todas as microtasks que estão na queue, entretando se existirem outras macrotasks ou alguma renderização, essas atividades teram mais prioridade e seram executadas primeiro.
+
+Uma maneira/metodologia aplicada é: como a engine fica "inutil" enquanto está executando grandes/longos processos, podemos regularmente/pontualmente fazer um "setTimeout(f)", dessa forma a engine vai parar temporariamente de focar na função, vai olhar e ver se existem renderizações/microtasks para fazer e então depois passa a ser "inutil" novamente ao retomar a atividade inicial.
+
+
+⚪ Web components ⚪
+
+Basicamente, uma página é composta/constituida por componentes, esses compenentes tem sua propria estrutura no DOM, seu CSS, seus eventos, methods e etc.
+Podemos criar "artificialmente" componenets, exentendo o HTML padrão. Para fazer isso você usar a formula/molde:
+##
+class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    // element created
+  }
+
+  connectedCallback() {
+    // browser calls this method when the element is added to the document
+    // (can be called many times if an element is repeatedly added/removed)
+  }
+
+  disconnectedCallback() {
+    // browser calls this method when the element is removed from the document
+    // (can be called many times if an element is repeatedly added/removed)
+  }
+
+  static get observedAttributes() {
+    return [/* array of attribute names to monitor for changes */];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    // called when one of attributes listed above is modified
+  }
+
+  adoptedCallback() {
+    // called when the element is moved to a new document
+    // (happens in document.adoptNode, very rarely used)
+  }
+  
+  // there can be other element methods and properties
+}
+##
+
+Veja agora uma aplicação.:
+##
+<script>
+class TimeFormatted extends HTMLElement {
+
+  render() { // (1)
+    let date = new Date(this.getAttribute('datetime') || Date.now());
+
+    this.innerHTML = new Intl.DateTimeFormat("default", {
+      year: this.getAttribute('year') || undefined,
+      month: this.getAttribute('month') || undefined,
+      day: this.getAttribute('day') || undefined,
+      hour: this.getAttribute('hour') || undefined,
+      minute: this.getAttribute('minute') || undefined,
+      second: this.getAttribute('second') || undefined,
+      timeZoneName: this.getAttribute('time-zone-name') || undefined,
+    }).format(date);
+  }
+
+  connectedCallback() { // (2)
+    if (!this.rendered) {
+      this.render();
+      this.rendered = true;
+    }
+  }
+
+  static get observedAttributes() { // (3)
+    return ['datetime', 'year', 'month', 'day', 'hour', 'minute', 'second', 'time-zone-name'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) { // (4)
+    this.render();
+  }
+
+}
+
+customElements.define("time-formatted", TimeFormatted);
+</script>
+
+<time-formatted id="elem" hour="numeric" minute="numeric" second="numeric"></time-formatted>
+
+<script>
+setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
+</script>
+##
+
+➽➽ Shadow DOM:
+serve como um envolucro, dando a possibilidade a um componente de criar sua propria DOM tree, que não pode ser acessada pelo resto do html.
+Um elemento do DOM (do HTML) tem duas subtrees:
+- Light tree, que é o DOM normal que vimos até agora.
+- shadow tree, que é um tree escondida e inacessível pelo html.
+Um dos diferenciais da shadow tree é que ela não é vista pelo "querySelector", além disso eles tem seu proprio estilo, ou seja, você precisa criar o seu CSS.
+Antes do exemplo, conheça a tag <template>. No html, se você escreve algo logicamente errado, existe uma auto-correção, por exemplo, se você criar somente uma linha de tabela, o html automaticamente cria uma tabela.
+Com o <template> o seu codigo não tem correção. Justamente por isso ele não executado pelo html, é ignorado. Todos os estilos ou scripts dentro de um template não são aplicados. Vejamos agora um exemplo de shadow dom.
+##Ex:
+//dentro do body do html
+//esse template é ignorado por padrão
+<template id="tmpl">
+  <style> p { font-weight: bold; } </style>
+  <p id="message"></p>
+</template>
+//lido normalmente
+<div id="elem">Click me</div>
+
+<script>
+  elem.onclick = function() {
+    elem.attachShadow({mode: 'open'});
+    //o trecho acima serve para Criar uma shadow tree para o elemento "elem".
+
+    elem.shadowRoot.append(tmpl.content.cloneNode(true));
+    //no trecho acima, nos "colamos" o conteudo do template (que naturalmente é ignorado)
+    //dentro da shadow DOM que acaboms que criar
+
+    elem.shadowRoot.getElementById('message').innerHTML = "Hello from the shadows!";
+    //no trecho acima nos trocamos o texto do elemento da dom tree.
+    //Repare que nesse momento do código, o conteudo de "elem" não é mais "Click me", e sim o que tem em sua shadow DOM.
+  };
+</script>
+##
+
+O exemplo acima denota uma das (se não a maior) importancia e utilidade do shadow DOM, poder criar elementos/tags do html personalizadas.
+Por exemplo, imagine que nos queremos criar um menu customizado:
+<custom-menu>
+  <title>Candy menu</title>
+  <item>Lollipop</item>
+  <item>Fruit Toast</item>
+  <item>Cup Cake</item>
+</custom-menu>
+Claramente, a tag <custom-menu> não existe, muito menos <item>. Com shadow DOM podemos criar esse elemento e com ajuda do <template> podemos passar isso para o html.
+Repare no exemplo abaixo como nos criamos esse <custom-menu> e como a utilização dos templates e a interligação do shadow DOM e seus methods foram feitas.
+##
+<!doctype html>
+<template id="tmpl">
+  <div class="menu">
+    <slot name="title"></slot>
+    <ul><slot name="item"></slot></ul>
+  </div>
+</template>
+
+<script>
+customElements.define('custom-menu', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.append( tmpl.content.cloneNode(true) );
+
+    this.shadowRoot.querySelector('slot[name="title"]').onclick = () => {
+      this.shadowRoot.querySelector('.menu').classList.toggle('closed');
+    };
+  }
+});
+</script>
+
+<custom-menu>
+  <span slot="title">Candy menu</span>
+  <li slot="item">Lollipop</li>
+  <li slot="item">Fruit Toast</li>
+  <li slot="item">Cup Cake</li>
+  <li slot="item">Abacate</item>
+</custom-menu>
+##
+
+⚪ Network requests ⚪
+
+JS consegue mandar network requests, carregar dados e outras coisas sem atualizar o browser. Existem diversas formas de mandar uma network request para pegar informações de um server.
+O termo AJAX (Asynchronous JavaScript And XML) era uma das metodologias antigas, sendo que o modo mais moderno/atual é usar o "fetch()" method.
+
+➽ fetch
+A sintaxe básica é: "let promise = fetch(url, [options]);" //Onde "options" são uma parte opcional, e se elas não existem é executado simplismente uma GET request. 
+Obter uma resposta é um processo de duas etapas:
+1. O server envia um "header" confirmando se a conexação foi estabelecida corretamente. Se tudo ocorreu bem o status da HTTP request é 200. Podemos fazer "response.ok"  e se for true, tudo ocorreu bem.
+2. O server disponibiliza uma forma de baixar o conteudo. Nessa parte você precisa de um method adicional para baixar/trazer as infos para dentro do JS. Normalmente response.json().
+
+Como você já deve saber, a resposta não é imediata, sendo necessário usar async/await. Recomendo uma revisão se necessário, mas basicamente você pode usar "await" fora da função "async" em algumas sitações especificas, como no exemplo abaixo:
+##
+let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+let response = await fetch(url);
+
+let commits = await response.json(); // read response body and parse as JSON
+
+alert(commits[0].author.login);
+##
+
+➼ Para fazer POST requests nos ainda usamos o method do "fetch" mas agora com options. A declaração é bem intuitiva. Vou me limitar a dar um exemplo bem legal:
+OBS rapida: nenhum dos códigos vai funcionar pois você não tem uma API para lidar com as requests, servindo somente para ilustração.
+## No exemplo a seguir usamos algo chamado de "blob" (não é git), mas não se apegue muito aos detalhes.
+<body style="margin:0">
+  <canvas id="canvasElem" width="100" height="80" style="border:1px solid"></canvas>
+
+  <input type="button" value="Submit" onclick="submit()">
+
+  <script>
+    canvasElem.onmousemove = function(e) {
+      let ctx = canvasElem.getContext('2d');
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+    };
+
+    async function submit() {
+      let blob = await new Promise(resolve => canvasElem.toBlob(resolve, 'image/png'));
+      let response = await fetch('/article/fetch/post/image', {
+        method: 'POST',
+        body: blob
+      });
+
+      // the server responds with confirmation and the image size
+      let result = await response.json();
+      alert(result.message);
+    }
+
+  </script>
+</body>
+##
+
+➼ Enviando um form com um arquivo:
+Para enviar um form você usa o "fetch" method juntamente do POST request, além disso você usa o built-in object "FormData", que permite que você salve os dados em algum lugar.
+##Ex:
+<form id="formElem">
+  <input type="text" name="firstName" value="John">
+  Picture: <input type="file" name="picture" accept="image/*">
+  <input type="submit">
+</form>
+
+<script>
+  formElem.onsubmit = async (e) => {
+    e.preventDefault();
+
+    let response = await fetch('/article/formdata/post/user-avatar', {
+      method: 'POST',
+      body: new FormData(formElem)
+    });
+
+    let result = await response.json();
+
+    alert(result.message);
+  };
+</script>
+##
+
+➼ Ainda falando de fetch, e se quisermos cancelar a request? Basta utilizar o built-in object AbortController(); (serve para qualquer função async).
+Primeiro você cria um um controller. Ex: let controller = new AbortController(); e então basta chamar controller.abort(); para abortar.
+O .abort() é uma propriedade do controller chamada de signal. Quando o signal é igual ao abort então a função async para.
+Na pratica, você precisa passar o signal como uma option do fecth e dado algum acontecimento (antes do carregamento) fazer o aborto.
+##Ex:
+<script>
+"use strict";
+(async () => {
+let controller = new AbortController();
+setTimeout(() => controller.abort(), 100); //troque essa valor para testar
+//Basciamente o aborto vai ocorrer ("garantidamente") dentro de um tempo.
+//Quando ele acontecer, um erro do tipo aborto vai ocorrer e para a função.
+//Podemos provar que ele para a função ao usar try/catch
+
+let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+try {
+  let response = await fetch(url, {
+    signal: controller.signal
+  });
+let commits = await response.json();
+alert(commits[0].author.login);
+
+} catch(err) {
+  if (err.name == 'AbortError') {
+    alert("Aborted!");
+  } else {
+    throw err;
+  }
+}
+})()
+</script>
+##
+
+➼ Cross-origin request:
+Se você usar o fetch para tentar acessar algum site, você terá um erro. Isso acontece porque existe uma "regra" chamada de CORS e deve-se passar ela como parametro ao fetch. 
+O CORS existe por segurança, evitando que scripts exeternos possam alterar dados de um site.
+Existe bastante conteúdo teórico sobre redes e como a web funciona "under the hood", sinta-se à vontade para pesquisar se achar importante.
+
+➼ FETCH API: detalhamento de sobre como o method fetch() funciona. O próprio javascript.info fala: "fetch api é ultrapassado, existindo outras coisas mais uteis de se usar. Dessa forma você pode pular e mesmo assim vai saber o suficiente sobre o fetch."
+
+➽ URL objects:
+Trocando de topico vamos falar agora sobre URL's. O JS possue um constructor que nos permite trabalhar facilmente com url's porém existem ferramentas melhores, dessa forma vou focar em distrinchar as partes de uma url.
+Vamos analisar a seguinte url:
+https://www.google.com/search?client=firefox-b-d&q=abacate
+href - toda a url
+protocol - é a parte do "https"
+hostname - é a parte do "www.google.com"
+port - é a porta da rede. Normalmente é oculto.
+host - é a junção hostname + port
+origin - é a junção host + protocol
+
+pathname - é a parte "/search". Se refere a em que local (dentro do código/estrutura do software) estamos executando algo.
+search - é a parte "?client=firefox-b-d&q=abacate". Se refere aos parametros passados. 
+
+Nesse contexto estamos fazendo uma busca sobre o que é um abacate dessa forma, dentro do código/estrutura do google eles usam "q=abacate" para "ativar" outra parte do código que então (internamente) vai fazer a busca.
+
+
+➽ Web Sockets:
+WebSocket é um protocolo que perimite que o browser e o server troquem dados entre si em uma conexão persistente.
+Relembrando, a HTTP não gosta de conversar. Sempre que uma request é respondida (seja com 200 OK ou 404 ERROR) ele fecha automaticamente a conexão. WebSocket consegue manter essa conexão aberta, permitindo trocar mais dados e por tempo em uma mesma conexão.
+Isso é util em jogos online, sistemas de troca em tempo real e etc.
+Para criar um webSocket você cria um ao usar o new "WebSocket()". Como parâmentro, você deve passar um link/caminho para um server e o protocolo deve ser "wss"
+Ex: let socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello"); O parametro que foi passado é um server/api que vai lidar com requests.
+
+A nivel superficial, um server é um código/arquivo(dentro de um conjuto) que vai receber e redirecionar http requests para os respectivos códigos (Você já viu isso superficialmente no todo-app).
+Normalmente usa-se node.js para criar a logica do server.
+Alguns eventos podem ser usados em webSockets, por exemplo: onopen, onmessage e onclose.
+
+Fica dificil de entender algo tão abstrato não é? E é por isso que agora vamos aprender node.js. Um "super set" do JavaScript que funciona no backend e que vai nos permitir entender conceitos mais complexos como servers e etc.
+

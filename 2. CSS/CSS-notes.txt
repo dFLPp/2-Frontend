@@ -1,0 +1,513 @@
+⚪ •CSS• ⚪
+
+OBS: Veja exemplos de aplicação. Só estou "resumindo" o conteúdo, e quando raramente exemplico o faço de maneira superficial.
+Atualmente, para qualquer mudança de cor, centralização de texto ou imagem, criação de sites responsívos e dinâmicos e tudo relacionado à interface de usuário , utiliza-se CSS.
+A sintaxe usada no CSS basea-se em escolher um element e dizer quais características deve ter, ou seja, é o conjunto selector {declaration block}. É mais fácil mostrar um exemplo.
+p, div {
+  color: red;
+  text-align: center;
+}
+"p" e "div" são ambos selectors, e tudo entre as chaves são declarations. Repare que cada declaration é um conjunto/par "property: value;". Repare que isso significa que TODOS as tags <p> e por consequência todos os seus elementos, vão possuir as properties especificadas.
+Dependendo do selector que você usa, diferentes modificações fará. Você pode usar um id como selector (#nomeid{}), pode usar uma classe (.nomedaclase{}) entre outros. Observação para a seguinte situação: p {} vai alterar todos os elements <p>, porém p.nomeclasse{} vai alterar somentes os elementos <p> QUE possuem a classe especificada.  Como visto no exemplo acima, você pode usar quantos selectors quiser desde que estejam separados por uma ","
+
+Lembrando que existem 3 formas de usar CSS em HTML:Usa dentro do <head>; Usar inline (com o attribute style=""); Fazendo um link para um arquivo CSS externo (mais recomendado), que é feito ao adicionar  <link rel="stylesheet" href="path/arquivo.css"> dentro do <head>.
+Antes de qualquer coisa, para fazer comments em um arquivo css usa-se a estrutura: /* comment here */
+
+⚪ Algumas Properties e suas variações:
+É meio obvio, mas essas anotações são um direcionamento para pesquisa, use essas notas enquanto pesquisa por material formal e por Imagens da aplicação do tópico citado.
+
+➼ Backgrounds: Existem diversas variações e a título de exemplo fica background-color: rgba(red, green, blue, alpha). red, green e blue são as tonalidades de cada cor e a sua combinação gera outra cor. alpha é o valor da transparência. Como observaçã, você pode ter gradientes como background. Para tal é necessário usar o value linear-gradient. Veja o exemplo: div{background-image: linear-gradient(to right, red , yellow);}
+
+➼ Borders: São bordas. Você pode definir seu tipo, sua cor, sua largura, etc. Por exemplo: 
+p {border-bottom: 6px solid red; border-style: solid; border-width: medium;}
+
+➼ Margins: é usado para criar espaço Fora do element, como se fosse a grossura da moldura de uma foto. Deve-se especificar na ordem: top, right, bottom, left. ex: div {margin: 25px 50px 75px 100px;}. Aqui a div vai ter suas dimensões alteradas em função de suas margins. É comum e recomendado usar "auto" tanto do right quanto no left para existir responsividade.
+
+➼ Padding: é usado para criar espaço Dentro do element, como se existisse uma moldura interna. O modo de funcionamento é igual ao do margin, por exemplo:
+div {padding: 25px 50px 75px 100px;}
+
+➼ Height/Width: basicamente você diz a largura e altura de uma imagem ou bloco(container), seja em pixels, cm, ou % do bloco. Tome cuidado quando for trabalhar com isso. Para centralizar uma imagem existem diversas formas, uma delas é: Você ajusta a width da imagem em % (para poder ser responsivo) com css in-line (usando o attribute style) e depois, no arquivo separado, você adiciona img{display: block; margin-left: auto; margin-right: auto;}. Dessa forma primeiro você transforma a imagem em um bloco e depois as margins são ajustadas automaticamente para a imagem ficar centralizada.
+
+➼ CSS Box model: É um termo usado para se referir ao layout/design onde nós usamos margin, border e padding antes de mostrar o content em si. É importante saber usar box model para que o conteúdo e as imagens "caibam" bem em diferentes dispositivos.
+
+➼ Outline: é uma ferramenta que podemos usar para formar os contornos dos elements, ou seja, depois de criar os paddings, margins, borders podemos ver o tamanho "final" do element. Exemplo: p.solid {outline-style: solid;}.
+
+➼ Text-shadow: Existem varias properties que poderiam ser citadas como text-align e text-indent, tome text-shadow como exemplo: h1 { color: white; text-shadow: 2px 2px 4px #000000;}. A ordem dos values é direção horizontal, direção vertical, desfoque e cor, todas elas se referindo, é claro, a sombra.
+
+➼ font-family: A property é bem simples, quero demostrar a dirença entre Serif e Sans-serif aqui. De modo resumido, fontes Sans-serif são fontes onde as quinas das letras são quadradas. Já fontes Serif tem uma espécie de triângulo nas quinas dos caracteres (letras em geral).
+Também é possivel usar fontes através do google, sendo necessário usaro <link>, por exemplo: <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong"> e então usa-se font-family: "Trirong", serif; (repare no uso das aspas)
+
+➼ Icons: De modo análogo, para usar icons você precisa fazer um link, por exemplo se formos usar os icones que o google fornece usariamos:
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">. Para efetivamente fazer os icones aparecer temos que usar algum in-line tag, como <i> ou <span>. Por exemplo: <i class="material-icons">cloud</i>. A classe é igual ao family-name do pacote que baixamos e o texto em si refere-se a imagem que você quer.
+
+➼ links: O foco aqui é apresentar mecanicas como o hover (quando você passa o mouse por cima). Algumas pessoas dizem que não importa, mas estão erradas, a ordem em que você escreve no CSS importa. Nesse caso, para que o hover funcione, você tem que ter determinado o os states "link" e "visited", antes. De mesmo modo você só pode usar o "active" se o hover já tiver sido definido. Veja o exemplo abaixo (correto)
+
+	a:link {
+	  text-decoration: none;
+	}
+	a:visited {
+	  text-decoration: none;
+	}
+	a:hover {
+	  text-decoration: underline;
+	}
+	a:active {
+	  text-decoration: underline;
+
+➼ Tables: Podemos adicionar bordas, mudar a cor, deixar ela listrada porém quero resaltar a responsividade possivel. Primeiro você tem que envolver a table em um container element (como uma div, aliás, você perceberá que os arquivos HTML são bem "desorganizados" cheios de div's e de elementos repetivos a maioria existindo em função do CSS). Nessa div temos que adicionar o style="overflow-x:auto;" dessa forma, quando o site for minimizado vai aparecer uma scrollbar horizontal possibilitando ver o resto da table.
+
+➼ Display: É a property mais importante quando se trata de controlar o layout. Vai especificar como ou se um elemento vai existir. Todos os elementos em HTML tem um valor padrão para o display, a maioria sendo "block" ou "inline" (já tratamos desse tipo de element à cima então vou passar reto).
+	Display: none; Vai não mostrar um elemento, ficando literalmente invisivel e Não ocupando espaço. visibility: hidden; também é uma alternativa porém nesse caso o element invisível ocupa espaço.
+Você pode trocar os displays padrão de um element, por exemplo fazer o <li> com display: inline; Porém você não muda o "tipo" do elemento (<li> não muda o seu "tipo", só seu display mudou).
+Existem outros displays importantíssimos como o flex porém vou deixar para abordar cada um particularmente quando chegar a hora.
+
+➼ Max-width: Ferramenta fundamental para alterar o tamanho de uma div. Se você usa width o valor fica fixo, com max-width você consegue responsividade (ainda mais se usar o valor em % de tela). É importante notar que talvez a div se redimensione mas o conteúdo dentro da div não. Nesse caso você tem que dizer que o conteúdo deve ter width e height de 100% (para preencher totalmente a div e variar de acordo com ela).
+
+➼ Position: Vai definir o tipo de posicionamento de um elemento (static, relative, fixed, absolute or sticky). As posições de um elemento na tela são definidas de acordo com suas distancias das margens da tela (top, right, bottom, left) como já visto na property margin, entretanto é necessário definir a position primeiro e só depois modificando as distancias.
+	- position: static; não é posicionado de nenhuma maneira especial, seguindo a "ordem/flow" da página. Como o nome diz, ele fica estático e não é afetado pelas properties "left", "right", "top" e etc. Mas afetado pelas margins.
+	- position: relative; seu posicionamento é relativo a sua posição inicial, sendo influenciado tanto pelo left, top, etc quanto pelas margins. Ou seja, quando você coloca uma div de 500x500 px² como position relative, quando você for mover ela (com margin, left/right/etc e com transform), ela vai se mover relativamente a posição inicial dela. Se não entender, tente lembrar da alusão/interpretação que você fazia antes.
+	- position: fixed; elementos como essa property ficam sempre no mesmo lugar da página, até se sobrepondo a outros conteudos, isso porque ele é a relativo ao viewport (a tela)
+	- position: absolute; posiciona elementos relativamente ao ultimo ancestor (relativo à ultima div). Elementos com essa property também podem sobrepor outros elementos. Basicamente se existe outra div antes da que tem position: absolute; então essa ultima vai ficar "dentro" da primeira. Se não exister outra, ela fica relativa ao body do html.Imagine o exemplo: Uma imagem é do tipo relative (sua position) e eu quero adicionar um texto em cima da imagem, para isso eu crio uma outra div e coloco ela com o position: absolute; dessa forma o texto vai ficar em cima da imagem (porque é o ultimo ancestor). A explicação ficou confusa, vá olhar o exemplo no site: https://www.w3schools.com/css/css_positioning.asp
+	- position: sticky; elementos como essa property ficam grudados de acordo com o scrollbar. Esse aqui não tem como explicar, só vendo para entender.
+	
+➼ z-index:  vai definir em que ordem os elementos são sobrepostos. Se uma imagem tem z-index de -1 e um texto tem z-index de 0 (não definido) a imagem vai aparecer atrás do texto, desfocada (não é o mesmo de deixar o texto em cima da imagem). Um element com z-index de +2 vai ficar sobre o element com z-index de +1. Uma observação é, o elemento que é escrito/posto depois no código html vai se soprepor ao elemento anterior, se nenhum deles te o z-index.
+
+➼ Overflow: property usada em divs ou em block elements que tem width definida/especificada. Ela diz o que acontece com o conteudo que sai/ultrapassa os limites da div. overflow: visible; é o padrão e basicamente deixa o conteúdo excedente aparecer. Com overflow: hidden; o conteúdo que sai da div (excesso) fica invisível. Com overflow: auto; você scrollbars somente quando necessário. Repare que essa property não redimensiona o conteúdo ( não diminue o tamanho de uma imagem para ela caber na div, por exemplo. Nesse caso você tem que "setar" a width e a height da imagem em 100%) 
+
+➼ float: usado para posicionar/ formatar conteúdo. Um exemplo de uso é deixar uma imagem do lado de um texto, ou então no meio do texto. O float pode ser left, right, none (padrão) ou inehit(quando ele herda o valor do float de seu ancestor/parent)
+
+➼ clear: É usado para ajeitar/formatar os elementos ao redor do float. Por exemplo, se o float está sobrepondo outra div na esquerda, você pode usar clear: left;  na div que está sendo sobreposta. Outra utilidade  é quando o uma imagem não cabe dentro de uma div e ela o ultrapassa. Nesse caso pode-se corrigir isso ao usar overflow: auto; na div que contém a imagem.
+
+➼ box-sizing: É útil para dizer como o tamanho dos elementos é contabilizado. Pode ser content-box (se você diz que uma div tem width=100px e adiciona padding e margins então o tamanho final vai ser maior que 100px) ou é border-box (se você diz que uma div tem width=100px, independente do padding e da margin que você use o a width vai se manter a mesma)
+
+➼ Centralization: Existem diversas formas. Para centralizar horizontalmente você pode fazer margin: auto; para elements blocks no geral e para textos você pode usar text-align: center; (incrivelmente também funciona com imagens). Outra maneira de centralizar imagens é fazer img 
+{display: block; margin-left: auto; margin-right: auto;}. Existe jeito melhor, mais uma maneira de alinhar verticalmente é usando o padding. Exemplo: Supondo que você tem items em uma espécie de catálogo e quer centralizar eles na página. Você pode criar várias divs, com a mesma classe e atribuir a elas: .menu{display:inline-flex; justify-content: center; align-items: center; border: 3px solid green;  padding: 10px; margin: 5px;}
+
+➼ Combinators: É um simbolo (space, >, ~ ou +) que vai ditar a relação entre selectors. Se você faz "div, p{}" então tanto a div quanto o p vão ter as mesmas properties. Se você faz "div.p{}" as properties vão ser aplicadas à div de classe p. Se você faz "div p{}" então só os paragrafos (p) que estão dentro da div (especificada antes do p) vão ser afetadas pelas properties. Se você faz "div > p{}" só os p's que estão dentro da div são afetados (se existir uma section dentro da div e dentro dela estarem p's, esses não seram afetados). Se você fizar "div + p{}" então SÓ o primeiro p após a div vai ser afetado pelas properties. Se você faz "div ~ p{}" TODOS os p's após a div são afetados.
+
+➼ Pseudo-classes: Eles dizem como o estilo fica após algo acontecer (em tese dá para fazer isso em javascript). O "hover" usado acima é um exemplo  de pseudo classe. A sintaxe é selector:pseudo-class {property: value;}. Algo interessante que dá pra fazer com pseudo classes:
+p.surprise {display: none; background-color: red; padding: 20px;}
+div:hover p{display: block;}  (quado passar o mouse sobre algum paragrafo dentro da div o paragrafo da classe "surprise vai aparecer")
+<div><p>Hover over this div element to show the p element</p><p class="surprise">Tada! Here I am!</p></div>
+Repare que infelizmente se eu passo o mouse sobre Qualquer paragrafo da div o surprise aparece. Eu não posso/não consegui nos testes, dar uma classe para o trigger de modo que só ele ativa o hover. Porém isso é facil de burlar, basta separar uma div para o trigger ou algo do tipo.
+
+➼ Pseudo-Elements: É usado para editar uma parte especifica do element. Por agora não tem muita utilidade. Sintaxe: selector::pseudo-element {property: value;} (repare que usa-se "::" diferente das pseudo classes que usam ":"). Um exemplo: p::first-letter {color: white; text-shadow: 2px 1px 1px black; font-size: 200%;}.
+OBS: Eu SEI QUE EXISTE uma forma de negar a formatação para umelemento específico, só não sei como. Tipo isso aí: ul.nav li a:hover:not(.active) {} (todos os links <a> que estão dentro de "ul.nav" e de "li" vão ser modificados pelas properties quando o mouse passar por cima (hover) EXCETO (:not) o elemento cuja classe é .active.
+
+➼ Dropdown: é basicamente quando um bloco que estava invisível cai e mostra uma espécie de menu. A div que vai ser usada no hover tem que ser to tipo "relative" e a que vai aparecer tem que ser do tipo absolute. Ou seja, são duas divs, uma a do "botão" que é relative e a outra que é do hidden content que vai aparecer, onde cada div tem que ser modificada da maneira correta. Usei essa técnica/feature no la salsa degli esempli.
+
+➼ Selector attribute: É útil para segmentar quais os elements de um mesmo tipo são editados e os que não são. Existem diversas variações porém vou me restringir ao seguinte exemplo. Suponha que você tem três links,dois deles abrem o conteúdo numa mesma aba e o outro abre o conteúdo em uma nova aba (target="_blank"). Se eu quero editar SOMENTE o link que abre na nova aba eu terei que o usar: a [target="_blank"]{}. A estrutura é element[attribute="value"]{properties} (espero não ter confundido nenhum termo...)
+
+OBS: Não sei você ja viu ou usei (nessa ordem cronotextica) mas "@media" é uma media querry, conceito que será visto mais a frente e que é útil para criar diferentes estilos (styles) para diferentes telas/dispositivos.
+
+➼ Specify: Como você com certeza já experienciou, o CSS segue algumas prioridades para saber qual estilo vai ser aplicado. Sintetizando e não citando os casos especiais, Estilos definidos com o <style> (no element.) tem a maior prioridade. Estilos atribuidos a ID's (#abacate) tem a segunda maior prioridade. Estilos atribuidos a Classes, attributes e pseudo-classes tem a terceira maior. E o estilo dos elements tem a menor prioridade  ( p{} por exemplo).
+Existe ainda a string "!important", se você coloca ela do lado de uma property ela vai automaticamente ter a MAIOR prioridade (a property, não o bloco todo.). Dado o poder do !important e necessário ter grandes responsabilidades, não use sem motivo especial. Ex:  Você tem dois paragrafos, um normal e outro  com um id. O primeiro tem background-color vermelho, e o segundo (com id) tem background-color verde, tudo isso no CSS. Se você rodar o código assim, cada paragrafo vai ter uma cor diferente. Agora se você fizer background-color: red !important;, então TODOS os paragrafos vão ser vermelhos.
+
+➼ Math functions: são calc(), max(), min(). calc(expressão) vai pegar o resultado da expressão matemática e incorpora-lo. ex: width: calc(100% -100px); max(lista) e min(lista) vão o maior valor e o menor valor, respectivamente, de uma lista dada e e incorporar seu valor . ex: width: max(50%, 720px); o que for maior vai ser incorporado pelo max e vai ser usado como value do width.
+
+➼ border-radius: Serve para deixar as bordas arredondadas. border-radius: 15px 50px 30px 90px; por exemplo vai ter um arredondamento diferente para todos os vertices.
+Para formar um círculo (serve para colocar imagens) use 50% como value para essa property.
+
+➼ box-shadow:  Você pode usar sombras tanto em textos com text-shadow quanto em block elements com box-shadow. Você coloca quantos pixels vã ter em cada diferção e depois indica a cor, quanto mais combinações você faz mais detalhada fica a sombra.
+Ex: box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+➼ Web-fonts: Existem várias maneiras de adicionar fontes e usa-las. Você pode fazer @import url() (no CSS) e colocar a url que leva até a fonte e para usar basta usar  font-family: '<nome da fonte>', <seu tipo (serif ou sans)> .
+Outro modo é usar "@font-face { font-family: <nome que VOCÊ dá à fonte>; src: url(<PATH até a fonte (você tem que baixar ela)>);}" e para chamar ela basta fazer font-family: <nome que você deu à fonte>;
+
+➼ Transformações: As transformações servem para rotacionar, diminuir aumentar um elemento quanto você passa o mouse, clica, etc. Exitem transformations 2D e 3D. Em 2D existem diversos paramaters porém o chamado matrix() junta todos em uma só. OBS: Apararentemente, transformations
+Ex: {transform:  matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())} Se quiser, pesquise o que cada um faz. Vou apresentar aqui o rotate.
+Suponha que você uma div qualquer, você pode fazer div.class:hover{transform: rotate(50deg);}. Sinceramente eu não vejo utilidade nisso, porém vou dar outro exemplo mas complexo: div#id1 {transform: matrix(1, -0.3, 0, 1, 0, 0);} (aparentemente é melhor usar id's do que classes)
+Para transformations 3D usa-se somente rotateX(), rotateY(), rotateZ()  e dados algum grau (ex: "90deg") vai ocorrer a rotação nesses eixos. As animações não existem sendo instantâneas.
+
+➼ Transitions: São mais legais de se trabalhar e tem várias utilidades (que eu consiga pensar). Basicamente você tem que dizer qual a property que vai mudar e em quanto tempo. Normalmente é usada com ":hover" ou com "onmouseover"(java script). Ex:
+
+div {          <!-- Definindo a div que vai ser alterda. Repare que o "transition" tem ficar aí dentro -->
+  width: 300px;
+  height: 100px;
+  background-color: yellow;
+  border: 1px solid black;
+  transition: width 3s, height 3s, background-image 2s, color 3s, font-size 2s, text-shadow 2s;
+}
+
+div:hover  {	<!-- É um hover normal, a diferença está na transition. -->
+  width: 600px;
+  height: 400px;
+  background-image: url(https://s2.glbimg.com/0uDIvDqeP54S1Fxtu9P9Ceuf42Q=/620x430/top/e.glbimg.com/og/ed/f/original/2014/09/01/porco.jpg);
+  background-size: cover;
+  background-position: center;
+  font-size: 50px;
+  color: white;
+  text-shadow: 1px 1px 1px black; 
+}
+
+➼ filter: É útil para modificar as cores de imagens. Existem diversas opções com blur, brightness, sature e etc. A exemplo fica:  Uma IMAGEM que tem classe chamada de brightness ficará escurecida com brightness {filter: brightness(50%);} podendo ficar atrás de textos sem confundir.
+
+➼ object-fit:  É usado para especificar o quanto uma <img> ou <video> Deve ser redimensionada dentro de um container. Se usar-mos object-fit: contain; a imagen manetém sua proporção porém se adequa ao tamanho do conteiner em que está. Outra solução para "fazer caber" uma imagem dentro de uma div é deixar a imagem com width: 100%; 
+
+➼ var(): É usada para atribuir variables ao CSS, que podem ser de global ou local scope.  Usar variables facilita a leitura do código e deixa o trabalho com javascript mais versátil, porém o metódo tradicional não é pior ou inferior.
+
+➼ Media Queries: É uma melhoria do antigo Media type do CSS2. Com media queries podemos criar um style em CSS que varia de acordo com a capacidade de um dispositivo. Podem ser checadas/usados para mudar o estilo a width e a heigth do viewport, do device, a orientação (deitado ou em pé) e a resolução da terra. É uma boa prática criar um arquivo CSS separado só para as media queries.  Para que as queries funcionem corretamente é necessário adicionar o meta
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  no <head> da página. 
+Quando o media query é considerado True o CSS dele é aplicado como padrão, obeserve a sintaxe:
+@media <not,only ou nada> <mediatype. ex: screen> and (<expressions. O que deve acontecer para a media querie ser ativa.>) {CSS-Code;}
+
+Observe o exemplo abaixo:
+/* Big tablets to smaller laptop screens*/
+@media only screen and (max-width:1200px) {
+/*Quando a tela tiver 1200px de width ou menos, tudo aqui dentro será aplicado.
+}
+
+/* Smaller tablets to larger tablet screens*/
+@media only screen and (max-width:1023px) {
+/*Quando a tela tiver 1023px de width ou menos, tudo aqui dentro será aplicado.
+}
+
+/*Larger phones to smaller tablet screens */
+@media only screen and (max-width:767px) {
+/*Quando a tela tiver 767px de width ou menos, tudo aqui dentro será aplicado.
+}
+
+/* smaller to larger mobile phones*/
+@media only screen and (max-width:480px) {
+/*Quando a tela tiver 480px de width ou menos, tudo aqui dentro será aplicado.
+}
+/* Para telas maiores que 1200px o style aplicado será o main CSS. */
+
+Cada dispositivo tem uma tamanho de "tela útil" diferente, porém pode-se generalizar algumas width's:
+	- celular/smatphone: de 0px até 480px
+	- Tablet (em pé): de 480px até 768px
+	- Tablet (deitado): de 768px até 1024px
+	- notebook: de 1024px até 1200px
+	- Monitores/televisores: acima de 1200px
+
+Sites responsivos são fortementes influênciados por media queries e pelo flexbox model.
+
+➼ Flexbox: É uma metodologia/layout que facilita a aplicação de layout responsivo de maneira mais fácil. Para comeaçar usar flexbox defina o display de um block element com "flex". Os child elements (que estão dentro da div flex) automaticamente ficam do tipo flex. As propriedades fundamentais Da DIV FLEX que devem ser lembradas/masterizadas são: flex-direction, flex-wrap, flex-flow, justify-content, align-items e align-content.
+- flex-direction vai dizer em que direção os child elements(divs) vão se amontoar (veja os exemplos de flex-direction row e column na internet). Por padrão ele usa row.
+- flex-wrap: wrap;  No caso do flex-drirection for row, quanto tiver elementos demais para caber em uma linha o flex-wrap vai automaticamente passar o proximo elemento para outra linha, na mesma formataçao "bonitinha" (É simplismente essencial você ver exemplos ou testar esses conceitos)
+- flex-flow é a junção das duas properties citadas a cima. ex: flex-flow: row wrap;
+- justify-content é ideal para escolher a posição de início dos elementos. Por padrão usa-se o flex-start. Para centralizar tudo no meio usa-se simplismente o value "center". Para distribuir (por exemplo) 3 elementos  equidistantes entre si e da borda(VEJA) usa-se "space-around" como value (usado para fazer aqueles catálogos de filmes ou series).
+- align-items serve para  alinhar o conteúdo de maneira vertical e horizontal. Ex: align-items: center; vai deixar os elementos no centro da altura da div. Para separa-los separadamente de maneira simétrica podemos usar junto o justify-content: space-around;
+-align-content é a mais confusa, mas de maneira resumida serve para alinhar as LINHAS dos elementos. Da pra deixar uma coluna do lado esquerdo e outra do lado direito, com um espaço no meio se usar-mos flex-direction: column; e align-content: space-between;
+
+As properties fundamentais para os CHILD ELEMENTS DA FLEX DIV (que são automaticamente display: flex;) são "flex" (que combina varias outras) e align-self
+- flex é uma combinação de flex-grow(da uma proporção de quanto um elemento vai crescer em coparação com os outros. O padrão é 1), flex-shrink (da uma proporção de quanto um elemento vai diminuir/encolher em coparação com os outros. O padrão é 1) e flex-basis (dizo comprimento inicial de um element). Quando faz-se flex: 100%; o element vai se alongar por toda a linha (como as navbars ficam em celulares)
+- align-self vai fazer o alinhamento vertical de um objeto em específico (vai sobreescrever a formatação do align-items (que faz a mesma coisa, só que para todos os elementos)).
+
+➼ CSS Grid:
+
+é layut bidimensional que é a tendencia/meta quando o assunto é fazer sites.
+Tudo o que vimos até agora, tables, floats, displays, margins, até mesmo o flexbox, tudo isso não passa de uma medida paliativa. 
+Eles não sai efecientes o suficiente para resolver problemas como "centralização vertical", por exemplo.
+Você já conhece elas, elas são boas, úteis e você já tem prática, mas não é o suficiente.
+
+CSS grid vem com a proposta de servir como a base/padrão de todos os sites, sendo responsável por criar a "estrutura" do site de uma maneira "tabular".
+Não quero dizer que os outros são inúteis, mas entre memorizar/usar displays,floats, e simplismente usar Grid como "main system" e flexblox para "directional flow", a ultima opção é melhor.
+---> Ou seja, quando for fazer páginas, SEMPRE dê preferencia à Grid e Flexbox, usando as outras ferramentas se necessário.
+(Até que outra tecnologia melhor apareça)
+
+Para usar:
+Você tem que definir um container como grid. Para isso faça: display: grid;
+Além disso você precisa definir o tamanho das linhas com:  grid-template-rows, e as colunas com: grid-template-columns.
+Depois disso basta colocar os child elements dentro da grid com "grid-column" e "grid-row"
+Não fique confuso, vamos discutir mais detalhadamente adiante.
+
+Antes de qualquer coisa, as divs que são grid por padrão não mostram suas bordas. Para você conseguir vê-las você deve usar as developer tools do navegador e clicar no botão "grid" que fica do lado da div.
+
+Terminologia/termos utilizados:
+	-> Grid container: é o elemento que possue o "display: grid";
+		##Ex:
+		<div class="container">
+		  <div class="item item-1"> </div>
+		  <div class="item item-2"> </div>
+		  <div class="item item-3"> </div>
+		</div>
+		##
+	-> grid line: grid é como uma "tabela", grid line são "as bordas" de cada linha/coluna.
+	-> grid track: é o espaço entre duas grid lines, ou seja, são as linhas/colunas.
+	-> grid area: espaço entre 4 grid lines (2 verticais 2 horizontais)
+	-> grid item: são os "children" elements (descententes direntos) do grid container
+	-> gird cell: é o "bloquinho"/espaço entre linhas e colunas. É uma "unidade" da grid.
+
+
+Principais propriedades:
+◙ Para o grid container
+	
+	-> display: grid; generates a block-level grid
+	
+	-> grid-template-columns && grid-template-rows: determinar o número, nome e tamnaho das grid lines.
+		- <track-size> é o tamanho/grossura que uma coluna/linha vai ter. Você pode usar pixels, porcentagem ou fr. "fr" é uma outra unidade "semelhante" à porcentagem.
+		- <line-name> é o nome que você pode dar para a Grid Line.
+		(recomendo ver uma imagem exemplificada de uma grid).
+		##Ex:
+		.g-container {
+		    display: grid;
+		    grid-template-columns: [first] 1fr [sec] 1fr [third] 1fr; //3 colunas, cada uma com 33% da tela
+		    grid-template-rows: [one-row] 50px; //uma linha.
+		    background-color: brown;
+		}	
+		##
+	OBS: quando você não dá nomes para uma grid line, ela é representada por um número (1 para primeira linha e coluna, 2 para a segunda linha e coluna, etc)
+
+	-> grid-template-areas: Serve para criar uma área na grid (conjunto de células).
+	   Você deve usar grid-template-area dentro do grid-container e especificar um nome para as areas, além de dizer quais céluas vão pertencer a essa área.
+	   Além disso você deve usar "grid-area: <nome da área>" dentro do grid item, para poder incluir ele na área (veremos mais disso na proxima sessão).
+		##Ex:
+		.g-container {
+		    display: grid;
+		    grid-template-columns: [first] 1fr [sec] 1fr [third] 1fr;
+		    grid-template-rows: 200px 200px 200px; /*não é preciso dar um nome.*/
+		    grid-template-areas: /*modo ideal de se escrever (replica o tamanho da sua grid)*/
+		    "header header sidebar" /*só vendo para entender*/
+		    "main main sidebar" /* cada linha deve ter a mesma quantindade de celulas naquela linha. */
+		    "main main sidebar"; /* se você não quer incluir uma celula em alguma área, basta colocar um ponto '.', mas não pode deixar de colocar */
+		}
+		.item-1{ /* repare que existem 9 celulas e somente 3 divs, e mesmo assim tudo "encaixa, pois as divs se "extendem".
+		    grid-area: header;
+		    background-color: royalblue;
+		}
+		.item-2{
+		    grid-area: main;
+		    background-color: seagreen;
+		}
+		.item-3{
+		    grid-area: sidebar;
+		    background-color: slateblue;
+		}
+		/* html:
+		<div class="g-container">
+			<div class="item item-1">a</div>
+			<div class="item item-2">b</div>
+			<div class="item item-3">c</div>
+	        </div>		
+		*/
+		##
+
+	-> column-gap && row-gap: diz o espaço entre cada coluna e linha. Você também pode usar a abreviação 
+		##ex: basta colocar:
+		  row-gap: 20px;
+            	  column-gap: 10px;
+            	##no exemplo anterior, dentro do grid-container.
+	-> gap: usado para declarar column-gap e row-gap em um mesmo comando
+	
+OBS:
+NÃO FAÇA ISSO:
+	##
+	.grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	}
+	##
+FAÇA ISSO:
+	##
+	.grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, minmax(10px, 1fr));
+	}
+	##
+MAIS DETALHES DO PORQUE LÁ NA FRENTE.
+	
+	-> justify-items: vai alinhar os itens/conteúdo dentro de cada célula em relação à horizontal(se fica na esquerda, na direita etc)
+		ex: justify-items: stretch; /*vai fazer toda a celula ficar preenchida/esticada*/
+	-> align-items: vai alinhar os itens/conteúdo dentro de cada célula em relação à vertical(se fica em cima, em baixo etc)
+		ex: align-items: stretch; /*vai fazer toda a celula ficar preenchida/esticada*/
+	-> place-items usado para declarar align-items e justify-items (nessa ordem) em um só comando.
+
+	-> align-content e justify-content: funcionam do mesmo jeito que o justify-items e o align-items, porém é aplicado em todo  conjunto "tabela".
+	Tipo, enquando os "-items" alinhavam em relações as linhas e as colunas da tabela, os "-content" alinham em relação à toda a grid
+	Como já dito antes, fortemente recomendo olhar imagens, principalmente a do site CSS tricks
+
+◙ para os grid-items
+
+	-> grid-column-start e grid-column-end: Tem sentido literal. Serve para definir o tamanho de um item dentro de uma grid, sem ter que fazer uma <div> para cada célula da grid.
+	Basciamente você diz qual o nome ou numeração da coluna onde começa e nome/número da coluna onde termina. Você também pode usar "span x", onde x é quantidade de colunas pelo qual o elemento vai ocupar apartir do ponto inicial. 
+	
+	-> grid-column: serve para "unir" esses dois comandos. Primeiro você define a linha vertical de início e, dividido por uma barra coloca a ultima linha vertical. Ainda é possivel usar o "span"
+		
+  	-> grid-row-start e grid-row-end: Tem sentido literal. Serve para definir o tamanho de um item dentro de uma grid, sem ter que fazer uma <div> para cada célula da grid.
+  	Basciamente você diz qual o nome ou numeração da linha onde começa e nome/número da linha onde termina. Você também pode usar "span x", onde x é quantidade de linhas pelo qual o elemento vai ocupar apartir do ponto inicial.
+
+	-> grid-row: serve para "unir" esses dois comandos. Primeiro você define a linha horizontal de início e, dividido por uma barra coloca a ultima linha horizontal. Ainda é possivel usar o "span".
+
+		##Ex das ultimas 4 properties:
+		#HMTL
+			<div class="z-container">
+				<div class="itemA">a</div>
+				<div class="itemB">b</div>
+		    	</div>
+		#CSS
+			.z-container{
+			    border: 1px solid black;
+			    display: grid;
+			    grid-template-columns: 200px 200px auto 200px 200px;
+			    grid-template-rows: 100px 120px 140px;
+			}
+			.itemA{
+			    grid-column: 2 / span 3;
+			    grid-row: 1 / 2;
+			    background-color: blue;
+			}
+			.itemB{
+			    grid-column: 1 / 6;
+			    grid-row: 3 / 4;
+			    background-color: chartreuse;
+			}
+		##
+
+Só em caso de você ter esquecido:
+As divs que tem display grid, por padrão, não mostram suas bordas. Para você conseguir vê-las você deve "Inspecionar" a página com o navegador e clicar no botão "grid" que fica do lado da div.
+
+	-> grid-area: já foi utilizada num exemplo anterior, mas basicamente ela vai criar uma área que vai ser ter atribuida ao item (selector) que estiver com essa property.
+	No geral: grid-area: <row-start> / <column-start> / <row-end> / <column-end>;
+	Repare que pode ser usada com uma "fusão" de grid-row e grid-column, definindo a área de um elemento em uma grid de uma maneira mais direta.
+	No caso do exemplo anterior, o itemA pode ser reescrito como: grid-area: 1 / 2 / 2 / span 3;
+
+	-> align-self: vai alinhar um grid-item em relação a célula em que está contido (verticalmente)
+	-> justify-self: vai alinhar um grid-item em relação a célula em que está contido (horizontalmente)
+	-> place-self: define as duas propriedades align-self e justify-self em um único comando. O primeiro valor é o align-self e o segundo é justify-self.
+	
+LEMBRE QUE TODAS ESSAS PRORIEDADES SE REFEREM AOS GRID CONTAINERS E AOS GRID ELEMENTS, OU SEJA, VOCÊ AINDA PODE USAR padding, margins, text-align, etc A VONTADE.
+
+◙ fr unit: Essa é a "Porcentagem do grid". Você quase sempre vai querer usar fr ao invés de porcentagem. Por exemplo: grid-template-columns: 1fr 3fr; signifca uma coluna de 25% e outra de 75%.
+A diferença fundamental entre porcentagens e o fr, é que esse ultimo é adpatável a medida que você adiciona padding, margins etc. Se você usa porcentagens é possivel que a width não fique em 100%(conteúdo ficando "fora" da tela)
+
+◙ Sizing functions: A função "Minmax()" vai definir um valor minímo e um máximo que uma coluna ou linha pode ter de "grossura".
+VOCÊ DEVE, EM TODAS AS CIRCUNSTÂNCIAS DEFINIR UM VALOR MÍNIMO DE ESPESSURA PARA UM LINHA/COLUNA. 
+Isso pode ser facilmente feito com minmax().
+NÃO FAÇA ISSO:
+	##
+	.grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	}
+	##
+FAÇA ISSO:
+	##
+	.grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, minmax(10px, 1fr));
+	}
+	##
+
+◙ repeat() function: Serve para evitar de escrever desnecessáriamente. Exemplo:
+##
+/* modo ruim */
+grid-template-columns:
+  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+/* rescrito mais facilmente como: */
+grid-template-columns:
+  repeat(8, 1fr);
+
+/* DEVE SER ESCRITO COMO: */
+grid-template-columns:
+  repeat(8, minmax(10px, 1fr));
+
+##
+
+◙ Fluid columns:
+Para que você consiga ter uma grid onde o número colunas em uma linha varia de acordo como o espaço disponível, você deve usar minmax.
+##Ex:
+#HTML
+<div class="grid">
+	<div> Quibusdam, eos esse dolorum facere voluptatem eius, dolore quas totam aspernatur obcaecati harum? Nihil eligendi eos minus odit minima earum incidunt rem fugit reprehenderit</div>
+	<div> Quibusdam, eos esse dolorum facere voluptatem eius, dolore quas totam aspernatur obcaecati harum? Nihil eligendi eos minus odit minima earum incidunt rem fugit reprehenderit</div>
+	<div> Quibusdam, eos esse dolorum facere voluptatem eius, dolore quas totam aspernatur obcaecati harum? Nihil eligendi eos minus odit minima earum incidunt rem fugit reprehenderit</div>
+	<div> Quibusdam, eos esse dolorum facere voluptatem eius, dolore quas totam aspernatur obcaecati harum? Nihil eligendi eos minus odit minima earum incidunt rem fugit reprehenderit</div>
+	<div> Quibusdam, eos esse dolorum facere voluptatem eius, dolore quas totam aspernatur obcaecati harum? Nihil eligendi eos minus odit minima earum incidunt rem fugit reprehenderit</div>
+	<div> Quibusdam, eos esse dolorum facere voluptatem eius, dolore quas totam aspernatur obcaecati harum? Nihil eligendi eos minus odit minima earum incidunt rem fugit reprehenderit</div>
+</div>
+
+#CSS
+	.grid {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	  grid-gap: 1rem;
+	}
+	.grid > div {
+	  background: #EDE7F6;
+	  padding: 1.5rem;
+	  border-radius: 1rem;
+	}
+	body {
+	  margin: 2rem;
+	  font: 12px system-ui;
+	}
+##
+
+
+
+⚪ Know-how de Padrões recorrentes:
+
+Fazer imagens uma do lado da outra (em linha): 
+	Primeiro você que definir border-box para toda a página ao fazer:
+	* {
+	  box-sizing: border-box;
+	}
+	É fundamental criar uma div para cada imagem e uma div que contém todas as divs das imagens. A div externa pode ser chamada de qualquer coisa mas para ficar didático vamos chama-la de clearflix pois o intuito dela e não deixar as imagens sairem da div. As demais divs (as das imagens) devem pertencer a mesma classe (ex: img-container).
+	Basta agora fazer o css das divs. Para garantir que o conteúdo vai ficar dentro da div (não vai "transbordar") na clearfix div usa-se:
+	.clearfix::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+	E nas container divs usamos:
+	.img-container {
+	  float: left;
+	  width: x%;
+	  padding: ypx;
+	}
+	Repare que, como cada imagem é uma div e como elas pertencem a mesma classe, ao usar float: left elas vão ficar uma do lado da outra. O width vai variar dependendo de quantas imagens você usar. Se for usar duas imagens width=50%, se for 3 imagens width=33%, se 4, então 25% e assim por diante. Para que as imagens fiquem "centralizadas" e separadas umas das outras você escolhe o padding.
+	Claro que existem outras maneiras de fazer isso, uma delas é a forma que eu usei no la_salsa_delle_salse e outra delas é usar flexbox, o método mais recomendado pois garante que as divs vão ter o mesmo tamanho e ser responsivas corretamente. (Usei outra estratégia no la salsa degli esempli, dê uma olhada).
+
+OBS: Ainda não chegou o momento de aprender flexbox mas, suponha que você tem uma div (d1), dentro dela tem outra div(d2) e dentro dessa tem uma imagem.
+Você pode modificar o tamanho de d2 com width: x%; e para a imagem caber faça (para a imagem) width: 100%;. Agora que você escolheu o tamanho da div d2 (e por consequência o tamnho da imagem) você pode fazer, para a div d1{ display: flex; (quebra de linha) justify-content: center;}. Essa é uma das formas de centralizar UMA (1) imagem na página e ainda mantê-la responsiva. Para mais imagens é só ver as anotações acima.
+
+Navigation Bar:
+	Uma possibilidade é: criar uma lista não-ordenada, que são os links, editar com css para ficar horizontal e para ficar parecendo uma navigation bar (podemos até colocar position: stiky; para que a barra acompanhe o usuário).
+	Cria-se o <ul>  e cada <li> vai ter <a> (já que são links) dessa forma não é necessário criar uma div para cada box. 
+	- Primeiro: li {float: left;} 
+	- Segundo: li a {display: inline-block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;}
+	- Terceiro: ul {list-style-type: none;  margin: 0; padding: 0; overflow: hidden; background-color: #333;}
+	- Escolha estética: li a:hover {background-color: #111;} (quebra de linha) .active {background-color: red;}
+
+	Se quiséssemos que o nav bar seja stiky basta criar uma div ao redor do <ul>, dar uma class a ela (ex: sticky) e atribuir o seguinte a ela: 
+	div.sticky{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;}
+	body {margin: 0;} (é importante para que a nav vai de uma lado ao outro (não fique desconectada das bordas)
+	Repare que se quiséssemos deixar os links centralizalizados (e não encostados na esquerda) bastaria adicionar width: 25%; como foi aprendendido no tópico anterior. Repare também que foi usado o display: inline-block; ele é uma mistura do inline (ficando um  do lado do outro) com o block (suas dimensões como width, margins  e etc são aplicadas como se fosse um bloco, coisa que não acontece com o inline).
+	OBS: Essa nem de longe é a melhor maneira de fazer uma nav bar (essa é simples e falta acabamento/refinamento), sempre tente entender a estrutura básica e buscar inovar/modificar. Você só vai ter aprendido quando conseguir converter/modificar o templete de modo que ele fique do jeito que você quer.
+	Isso acima é tão verdade que eu vou fazer/citar outro exemplo aqui. Essa é uma nav responsiva, ela fica no topo normalmente, porém se a tela ficar mais grande (tipo uma tablet) a Nav fica vertical e do lado direito, e se ela fica pequena (tipo uma celular) ela ficar vertical centralizada no meio da tela.
+	Para verificar o passo a passo/ ideias vá até o site "la salsa degli esempli" (o playground do projeto original).
+
+
+Formulários:
+Eu como sou leigo acho meio inútil (ja que não consigo efetivamente receber a informação) mas vamos usar. Formulários se baseiam muito no element <imput> e pouco no <output>. O código é bem auto explicativo então basta olhar o html que você deve entender a ideia.
+
+
+Trabalhando com cores: 
+	- Para fazer o site ficar coerente e amigável ao leitor é importante dominar o uso de cores e de fontes. Para cores é recomendado só usar uma ou 2 cores primárias por página, e trabalhar com uma paleta de cores com "TONES" diferentes (misturando cinza com a cor "pura"/orginial) "TINT" diferentes (misturando branco com a cor original) e com "SHADES" diferentes (misturando preto com a cor pura). 
+Exemplo: Cor pura: #00B500 (verde) - Possível paleta: #AAE6AA, #003C00, #559155 (e variações)
+Claro que isso não é uma regra, podendo por exemplo usar mas cores e fazer um site só de cores complementares (que são opostas no espectro, dando foco/atenção uma a outra);
+Essa paleta de cores (conjunto de todas as cores usadas) tem que representar bem o seu produto/marca (estudar psicologia das cores é algo que os pros fazem).
+Para cada cor você também deve dar um propósito, qual cor será usada para dar destaque (converter clientes)? Qual será usada para citar outro artigo do site? E etc.
+Existe uma regra chamada de 60-30-10 que diz: 60% da página deve estar na primary color (ex: white), 30% de estar na sua cor secundária (ex: black) e 10% no sua cor de destaque (ex: purple).
+	 -É importante deixar algumas partes do site em branco (sem conteúdo) isso melhora a legibilidade deixando o conteúdo destacado e facilitando sua localização. A cor não precisa ser branca, basta que não tenha nenhum conteúdo e não chame atenção para si.
+	- Os segredos para fazer bons websites (que cumpre os propositos dados) são analisar a psciologia das cores de acordo com o que seus clientes querem/tem, além de manter o conteúdo simples e intuitivo deixando-o "atraente" seja de uma perspectiva emocional (cores corretas, imagens excitantes e etc) ou de uma maneira literal (imagens "estranhas" ou cores desconexas mas calculadamente selecionadas para causar a ideia de "inovação"/diferença)
+
+Tooltips: 
+	- São caixinhas que aparecerem para guiar o usuário ou complementar informações quando passa-se o mouse por cima de um  elemento. Pode ser feito com textos (meio "feio") e com imagens. Você cria uma div (onde vai ficar o element que tem que ser :hover) e dentro dela você coloca um span (onde vai ficar o texto). No CSS você edita a primeira div e a span e depois deixa a span invisível. Para deixar a transição suave podemos deixar opacidade com 0 e então usar transition: opacity 1s; e ao fazer hover na div deixa-se a visibility: visible;.
+
+Pagination: Em sites com muitas páginas você deve estruturar o conteúdo e vai precisar de links para facilitar o acesso a diferentes materiais. O jeito que você faz é bem livre. Você pode colocar um link no meio do texto, deixar os mais importantes na navigation bar ou pode usar Breadcrumbs (ex: "Home/Fotos/FBI-level/pagina-atual", onde todos os termos menos "pagina-atual" são links para suas respectivas páginas). Existem diverentes designs e em geral é bastante sememhante a uma nav-bar.
+
+Column layout: Existem diversas variações. Aqui me refiro as properties relacionadas ao column-count. "column-count: 2" vai separar o texto da div em duas colunas com conteúdo bem separado. Você pode adicionar barras entre as colunas e acertar o espaçamento. Para formatar um artigo de maneira melhor você pode "eximir" uma heading de ser incluida em uma coluna ao usar "column-span: all;" para o element.
+
+* Você pode usar flexbox para centralizar uma div no meio da tela, porém também pode fazer isso sem comprometer o display da div. Esse método consiste em usar:
+	position: absolute; (permeite ficar no centro da página ou de outra div (caso ela tenha postion: relative))
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%,-50%); 
+Não entendi a "conta"/"matemática" dos 50%, mas no final tudo fica centralizado (e você não precisou usar flexbox)
+
