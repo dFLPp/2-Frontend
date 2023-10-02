@@ -1,5 +1,0 @@
-- Abordar como se dá o processo de build de um aplicativo de front end
-- explicar modle bundlers (vite e esbuild)
-- excplicar task runners (npm scripts)
-- explicar linters and formaters
-- explicar testing (vitest e playwright) 
