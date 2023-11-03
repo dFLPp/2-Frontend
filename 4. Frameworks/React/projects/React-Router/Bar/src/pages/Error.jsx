@@ -1,9 +1,0 @@
-import React from 'react'
-
-export default function Error() {
-  return (
-    <div style={{textAlign: 'center'}}>
-      <h1>About</h1>
-    </div>
-  )
-}
